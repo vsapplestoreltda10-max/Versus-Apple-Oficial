@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Versus Apple Oficial</title>
+
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+    background: #f5f5f7;
+    margin: 0;
+}
+
+.container {
+    max-width: 420px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+h2 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.insta {
+    text-align: center;
+    color: #6e6e73;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+h3 {
+    margin-top: 25px;
+    font-size: 15px;
+    color: #1d1d1f;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    border-radius: 12px;
+    border: 1px solid #d2d2d7;
+    font-size: 15px;
+    background: #fafafa;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #0071e3;
+    background: #fff;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 25px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #6a0dad, #8e44ad);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: #86868b;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Versus Apple Oficial</h2>
+    <div class="insta">@versusappleoficial</div>
+
+    <h3>Dados Pessoais</h3>
+    <input type="text" id="nome" placeholder="Nome completo">
+    <input type="text" id="cpf" placeholder="CPF">
+    <input type="date" id="nascimento">
+    <input type="email" id="email" placeholder="E-mail">
+
+    <h3>Detalhes da Compra</h3>
+    <input type="text" id="aparelho" placeholder="Aparelho desejado (modelo, cor, GB)">
+    <input type="text" id="vencimento" placeholder="Dia de vencimento das parcelas">
+
+    <h3>Endereço de Entrega</h3>
+    <input type="text" id="cep" placeholder="CEP" onblur="buscarCEP()">
+    <input type="text" id="rua" placeholder="Rua">
+    <input type="text" id="numero" placeholder="Número">
+    <input type="text" id="bairro" placeholder="Bairro">
+    <input type="text" id="cidade" placeholder="Cidade">
+    <input type="text" id="estado" placeholder="Estado">
+
+    <button onclick="enviar()">Finalizar Cadastro</button>
+
+    <div class="footer">
+        🔒 Seus dados são protegidos e usados apenas para análise de compra.
+    </div>
+
+</div>
+
+<script>
+
+// CPF máscara
+document.getElementById('cpf').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g, '');
+    v = v.replace(/(\d{3})(\d)/, '$1.$2');
+    v = v.replace(/(\d{3})(\d)/, '$1.$2');
+    v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    e.target.value = v;
+});
+
+// CEP automático
+function buscarCEP() {
+    let cep = document.getElementById("cep").value.replace(/\D/g, '');
+    
+    if (cep.length === 8) {
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("rua").value = data.logradouro || '';
+            document.getElementById("bairro").value = data.bairro || '';
+            document.getElementById("cidade").value = data.localidade || '';
+            document.getElementById("estado").value = data.uf || '';
+        });
+    }
+}
+
+// Enviar WhatsApp
+function enviar() {
+
+let nome = document.getElementById("nome").value;
+let cpf = document.getElementById("cpf").value;
+let nascimento = document.getElementById("nascimento").value;
+let email = document.getElementById("email").value;
+
+let aparelho = document.getElementById("aparelho").value;
+let vencimento = document.getElementById("vencimento").value;
+
+let cep = document.getElementById("cep").value;
+let rua = document.getElementById("rua").value;
+let numero = document.getElementById("numero").value;
+let bairro = document.getElementById("bairro").value;
+let cidade = document.getElementById("cidade").value;
+let estado = document.getElementById("estado").value;
+
+let mensagem = `Cadastro do Cliente - Versus Apple Oficial
+Instagram: @versusappleoficial
+
+Nome: ${nome}
+CPF: ${cpf}
+Nascimento: ${nascimento}
+E-mail: ${email}
+
+📱 Aparelho desejado: ${aparelho}
+📅 Vencimento das parcelas: ${vencimento}
+
+Endereço:
+CEP: ${cep}
+Rua: ${rua}, Nº ${numero}
+Bairro: ${bairro}
+Cidade: ${cidade}
+Estado: ${estado}
+
+🔗 Acompanhar/Finalizar pedido:
+https://sandwiche.me/vsapplestore
+
+🔒 Segurança e privacidade
+Seus dados são 100% protegidos e utilizados exclusivamente para análise e aprovação da compra no boleto bancário.`;
+
+let url = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
+
+window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
