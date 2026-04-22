@@ -21,16 +21,24 @@ body {
 }
 
 h2 { text-align:center; }
-.insta { text-align:center; color:#6e6e73; margin-bottom:15px; }
+.insta { text-align:center; color:#6e6e73; margin-bottom:20px; }
 
 h3 { margin-top:25px; }
+
+label {
+    font-size:13px;
+    color:#6e6e73;
+    margin-top:10px;
+    display:block;
+}
 
 input, select {
     width:100%;
     padding:14px;
-    margin-top:8px;
+    margin-top:5px;
     border-radius:12px;
     border:1px solid #d2d2d7;
+    background:#fafafa;
 }
 
 button {
@@ -42,6 +50,7 @@ button {
     background:linear-gradient(135deg,#6a0dad,#8e44ad);
     color:#fff;
     font-weight:bold;
+    cursor:pointer;
 }
 
 .footer {
@@ -61,18 +70,25 @@ button {
 <div class="insta">@versusappleoficial</div>
 
 <h3>Dados Pessoais</h3>
-<input id="nome" placeholder="Nome completo">
-<input id="cpf" placeholder="CPF">
+
+<label>Nome completo</label>
+<input id="nome">
+
+<label>CPF</label>
+<input id="cpf">
+
+<label>Data de nascimento</label>
 <input type="date" id="nascimento">
-<input id="email" placeholder="E-mail">
-<input id="telefone" placeholder="Telefone (WhatsApp)">
+
+<label>E-mail</label>
+<input id="email">
+
+<label>Telefone (WhatsApp)</label>
+<input id="telefone">
 
 <h3>Compra</h3>
 
-<div style="font-size:13px; color:#6e6e73;">
-Aparelhos com disponibilidade
-</div>
-
+<label>Aparelhos com disponibilidade</label>
 <select id="aparelho">
 <option value="">Selecione</option>
 <option>11 Pro Max 256GB</option>
@@ -96,19 +112,32 @@ Aparelhos com disponibilidade
 <option>PlayStation 5 Slim 1TB</option>
 </select>
 
-<input id="vencimento" placeholder="Dia de vencimento das parcelas">
+<label>Dia de vencimento das parcelas</label>
+<input id="vencimento">
 
-<div style="font-size:12px; color:#777;">
+<div style="font-size:12px; color:#777; margin-top:5px;">
 Cores a consultar com o atendente
 </div>
 
 <h3>Endereço</h3>
-<input id="cep" placeholder="CEP" onblur="buscarCEP()">
-<input id="rua" placeholder="Rua">
-<input id="numero" placeholder="Número">
-<input id="bairro" placeholder="Bairro">
-<input id="cidade" placeholder="Cidade">
-<input id="estado" placeholder="Estado">
+
+<label>CEP</label>
+<input id="cep" onblur="buscarCEP()">
+
+<label>Rua</label>
+<input id="rua">
+
+<label>Número</label>
+<input id="numero">
+
+<label>Bairro</label>
+<input id="bairro">
+
+<label>Cidade</label>
+<input id="cidade">
+
+<label>Estado</label>
+<input id="estado">
 
 <button onclick="enviar()">Finalizar Cadastro</button>
 
