@@ -23,6 +23,8 @@ body {
 h2 { text-align:center; }
 .insta { text-align:center; color:#6e6e73; margin-bottom:15px; }
 
+h3 { margin-top:25px; }
+
 input, select {
     width:100%;
     padding:14px;
@@ -34,7 +36,7 @@ input, select {
 button {
     width:100%;
     padding:16px;
-    margin-top:20px;
+    margin-top:25px;
     border:none;
     border-radius:14px;
     background:linear-gradient(135deg,#6a0dad,#8e44ad);
@@ -42,6 +44,12 @@ button {
     font-weight:bold;
 }
 
+.footer {
+    font-size:12px;
+    text-align:center;
+    margin-top:15px;
+    color:#777;
+}
 </style>
 </head>
 
@@ -52,11 +60,12 @@ button {
 <h2>Versus Apple Oficial</h2>
 <div class="insta">@versusappleoficial</div>
 
-<h3>Dados</h3>
+<h3>Dados Pessoais</h3>
 <input id="nome" placeholder="Nome completo">
 <input id="cpf" placeholder="CPF">
 <input type="date" id="nascimento">
-<input id="telefone" placeholder="Telefone">
+<input id="email" placeholder="E-mail">
+<input id="telefone" placeholder="Telefone (WhatsApp)">
 
 <h3>Compra</h3>
 
@@ -87,45 +96,95 @@ Aparelhos com disponibilidade
 <option>PlayStation 5 Slim 1TB</option>
 </select>
 
+<input id="vencimento" placeholder="Dia de vencimento das parcelas">
+
+<div style="font-size:12px; color:#777;">
+Cores a consultar com o atendente
+</div>
+
+<h3>Endereço</h3>
+<input id="cep" placeholder="CEP" onblur="buscarCEP()">
+<input id="rua" placeholder="Rua">
+<input id="numero" placeholder="Número">
+<input id="bairro" placeholder="Bairro">
+<input id="cidade" placeholder="Cidade">
+<input id="estado" placeholder="Estado">
+
 <button onclick="enviar()">Finalizar Cadastro</button>
+
+<div class="footer">
+🔒 Seus dados são utilizados apenas para análise e envio do pedido.
+</div>
 
 </div>
 
 <script>
 
+// CEP automático
+function buscarCEP(){
+ let cep = document.getElementById("cep").value.replace(/\D/g,'');
+ if(cep.length==8){
+ fetch(`https://viacep.com.br/ws/${cep}/json/`)
+ .then(r=>r.json())
+ .then(d=>{
+  document.getElementById("rua").value=d.logradouro||"";
+  document.getElementById("bairro").value=d.bairro||"";
+  document.getElementById("cidade").value=d.localidade||"";
+  document.getElementById("estado").value=d.uf||"";
+ });
+ }
+}
+
+// ENVIAR
 function enviar(){
 
 let nome = document.getElementById("nome").value;
 let cpf = document.getElementById("cpf").value;
 let nascimento = document.getElementById("nascimento").value;
+let email = document.getElementById("email").value;
 let telefone = document.getElementById("telefone").value;
+
 let aparelho = document.getElementById("aparelho").value;
+let vencimento = document.getElementById("vencimento").value;
+
+let cep = document.getElementById("cep").value;
+let rua = document.getElementById("rua").value;
+let numero = document.getElementById("numero").value;
+let bairro = document.getElementById("bairro").value;
+let cidade = document.getElementById("cidade").value;
+let estado = document.getElementById("estado").value;
 
 if(!nome || !cpf || !telefone || !aparelho){
-    alert("Preencha todos os campos");
-    return;
+ alert("Preencha os campos obrigatórios");
+ return;
 }
 
-// 🔥 LINK CORRETO WHATSAPP
-let mensagem = `Versus Apple Oficial
+let mensagem = `Cadastro - Versus Apple Oficial
 
 Nome: ${nome}
 CPF: ${cpf}
 Nascimento: ${nascimento}
+E-mail: ${email}
 Telefone: ${telefone}
 
-Produto: ${aparelho}
+📱 Aparelho: ${aparelho}
+📅 Vencimento: ${vencimento}
+
+Endereço:
+CEP: ${cep}
+Rua: ${rua}, Nº ${numero}
+Bairro: ${bairro}
+Cidade: ${cidade}
+Estado: ${estado}
 
 🌐 Site:
 https://sandwiche.me/vsapplestore`;
 
 let url = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
 
-
 window.location.href = url;
 
 }
-
 </script>
 
 </body>
