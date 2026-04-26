@@ -145,7 +145,7 @@ button {
 <input id="estado">
 
 <label>Observações para entrega</label>
-<textarea id="observacao" placeholder="Ex: casa nos fundos, portão preto..."></textarea>
+<textarea id="observacao"></textarea>
 
 <label style="display:flex;align-items:center;margin-top:15px;">
 <input type="checkbox" id="termos" style="width:auto;margin-right:10px;">
@@ -181,7 +181,7 @@ document.getElementById("telefone").addEventListener("input", function(e){
  e.target.value = v;
 });
 
-// CEP automático
+// CEP
 function buscarCEP(){
  let cep = document.getElementById("cep").value.replace(/\D/g,'');
  if(cep.length==8){
@@ -196,7 +196,7 @@ function buscarCEP(){
  }
 }
 
-// gerar dados
+// gerar
 function gerarProtocolo(){
  return "VS" + Math.floor(Math.random() * 1000000000);
 }
@@ -244,20 +244,56 @@ if(!assinatura){
  return;
 }
 
-// tela análise
+// TELA PREMIUM
 document.body.innerHTML = `
-<div style="display:flex;justify-content:center;align-items:center;height:100vh;font-family:sans-serif;">
-<div>
-<h2>🔎 Analisando cadastro...</h2>
-<p>✔ Validando dados...</p>
-<p>✔ Consultando sistema...</p>
-<p>✔ Gerando contrato...</p>
-<p>✔ Liberando compra...</p>
+<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:#a855f7;font-family:sans-serif;">
+<div style="width:300px;">
+
+<h2 style="text-align:center;color:#c084fc;">🔐 Processamento Seguro</h2>
+
+<div style="height:8px;background:#222;border-radius:10px;margin:20px 0;">
+<div id="barra" style="height:100%;width:0%;background:#a855f7;border-radius:10px;"></div>
+</div>
+
+<p id="porcentagem" style="text-align:center;">0%</p>
+
+<div id="status"></div>
+
 </div>
 </div>
 `;
 
-setTimeout(()=>{
+let etapas = [
+ "Criptografando dados...",
+ "Validando informações...",
+ "Consultando sistema...",
+ "Gerando contrato...",
+ "Finalizando análise..."
+];
+
+let progresso = 0;
+let etapaIndex = 0;
+
+let intervalo = setInterval(()=>{
+ progresso++;
+
+ document.getElementById("barra").style.width = progresso + "%";
+ document.getElementById("porcentagem").innerText = progresso + "%";
+
+ if(progresso % 20 === 0 && etapaIndex < etapas.length){
+   document.getElementById("status").innerHTML += `<p>✔ ${etapas[etapaIndex]}</p>`;
+   etapaIndex++;
+ }
+
+ if(progresso >= 100){
+   clearInterval(intervalo);
+   finalizarEnvio();
+ }
+
+}, 40);
+
+// FINAL
+function finalizarEnvio(){
 
 let protocolo = gerarProtocolo();
 let codigo = gerarCodigo();
@@ -302,9 +338,10 @@ Em instantes você receberá as instruções de compra referentes ao dispositivo
 
 let url = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
 
-window.location.href = url;
-
-}, 3000);
+setTimeout(()=>{
+ window.location.href = url;
+}, 800);
+}
 
 }
 </script>
