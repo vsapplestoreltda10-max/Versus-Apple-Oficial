@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Versus Apple Oficial</title>
 
 <style>
@@ -160,12 +161,10 @@ Li e aceito os termos de compra
 
 <script>
 
-// MÁSCARA TELEFONE
+// máscara telefone
 document.getElementById("telefone").addEventListener("input", function(e){
  let v = e.target.value.replace(/\D/g,"");
-
  if(v.length > 11) v = v.slice(0,11);
-
  if(v.length > 10){
   v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
  } else if(v.length > 6){
@@ -175,18 +174,16 @@ document.getElementById("telefone").addEventListener("input", function(e){
  } else {
   v = v.replace(/^(\d*)/, "($1");
  }
-
  e.target.value = v;
 });
 
-// SUGESTÃO DE EMAIL
+// sugestão email
 let emailInput = document.getElementById("email");
 let box = document.getElementById("sugestoesEmail");
 
 let dominios = ["@gmail.com", "@hotmail.com", "@outlook.com"];
 
 emailInput.addEventListener("input", function(){
-
  let valor = emailInput.value;
 
  if(valor.includes("@") || valor.length < 2){
@@ -226,15 +223,20 @@ function buscarCEP(){
  fetch(`https://viacep.com.br/ws/${cep}/json/`)
  .then(r=>r.json())
  .then(d=>{
-  document.getElementById("rua").value=d.logradouro||"";
-  document.getElementById("bairro").value=d.bairro||"";
-  document.getElementById("cidade").value=d.localidade||"";
-  document.getElementById("estado").value=d.uf||"";
+  rua.value=d.logradouro||"";
+  bairro.value=d.bairro||"";
+  cidade.value=d.localidade||"";
+  estado.value=d.uf||"";
  });
  }
 }
 
-// ENVIAR
+// 🔥 CORREÇÃO DE EMOJIS
+function normalizarTexto(txt){
+ return txt.normalize("NFC");
+}
+
+// enviar
 function enviar(){
 
 let nome = document.getElementById("nome").value;
@@ -266,7 +268,7 @@ if(!termos){
  return;
 }
 
-let mensagem = `Cadastro - Versus Apple Oficial
+let mensagem = normalizarTexto(`Cadastro - Versus Apple Oficial
 
 Nome: ${nome}
 CPF: ${cpf}
@@ -287,7 +289,7 @@ Estado: ${estado}
 Observações: ${observacao}
 
 🌐 Site:
-https://sandwiche.me/vsapplestore`;
+https://sandwiche.me/vsapplestore`);
 
 let url = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
 
