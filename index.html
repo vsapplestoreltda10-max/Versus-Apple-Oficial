@@ -32,23 +32,13 @@ label {
     display:block;
 }
 
-input, select {
+input, select, textarea {
     width:100%;
     padding:14px;
     margin-top:5px;
     border-radius:12px;
     border:1px solid #d2d2d7;
     background:#fafafa;
-}
-
-textarea {
-    width:100%;
-    padding:14px;
-    margin-top:5px;
-    border-radius:12px;
-    border:1px solid #d2d2d7;
-    background:#fafafa;
-    min-height:80px;
 }
 
 button {
@@ -91,7 +81,10 @@ button {
 <input type="date" id="nascimento">
 
 <label>E-mail</label>
-<input id="email">
+<div style="position:relative;">
+<input id="email" autocomplete="off">
+<div id="sugestoesEmail" style="position:absolute;width:100%;background:#fff;border:1px solid #ccc;border-radius:10px;margin-top:5px;display:none;z-index:10;"></div>
+</div>
 
 <label>Telefone (WhatsApp)</label>
 <input id="telefone">
@@ -149,11 +142,9 @@ Cores a consultar com o atendente
 <label>Estado</label>
 <input id="estado">
 
-<!-- NOVO CAMPO -->
 <label>Observações para entrega</label>
-<textarea id="observacao" placeholder="Ex: casa nos fundos, portão preto..."></textarea>
+<textarea id="observacao"></textarea>
 
-<!-- NOVO ACEITE -->
 <label style="display:flex;align-items:center;margin-top:15px;">
 <input type="checkbox" id="termos" style="width:auto;margin-right:10px;">
 Li e aceito os termos de compra
@@ -169,7 +160,66 @@ Li e aceito os termos de compra
 
 <script>
 
-// CEP automático
+// MÁSCARA TELEFONE
+document.getElementById("telefone").addEventListener("input", function(e){
+ let v = e.target.value.replace(/\D/g,"");
+
+ if(v.length > 11) v = v.slice(0,11);
+
+ if(v.length > 10){
+  v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+ } else if(v.length > 6){
+  v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+ } else if(v.length > 2){
+  v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+ } else {
+  v = v.replace(/^(\d*)/, "($1");
+ }
+
+ e.target.value = v;
+});
+
+// SUGESTÃO DE EMAIL
+let emailInput = document.getElementById("email");
+let box = document.getElementById("sugestoesEmail");
+
+let dominios = ["@gmail.com", "@hotmail.com", "@outlook.com"];
+
+emailInput.addEventListener("input", function(){
+
+ let valor = emailInput.value;
+
+ if(valor.includes("@") || valor.length < 2){
+   box.style.display = "none";
+   return;
+ }
+
+ box.innerHTML = "";
+
+ dominios.forEach(d => {
+   let item = document.createElement("div");
+   item.style.padding = "10px";
+   item.style.cursor = "pointer";
+   item.innerText = valor + d;
+
+   item.onclick = () => {
+     emailInput.value = valor + d;
+     box.style.display = "none";
+   };
+
+   box.appendChild(item);
+ });
+
+ box.style.display = "block";
+});
+
+document.addEventListener("click", function(e){
+ if(!emailInput.contains(e.target)){
+   box.style.display = "none";
+ }
+});
+
+// CEP
 function buscarCEP(){
  let cep = document.getElementById("cep").value.replace(/\D/g,'');
  if(cep.length==8){
@@ -203,7 +253,6 @@ let bairro = document.getElementById("bairro").value;
 let cidade = document.getElementById("cidade").value;
 let estado = document.getElementById("estado").value;
 
-// NOVOS
 let observacao = document.getElementById("observacao").value;
 let termos = document.getElementById("termos").checked;
 
