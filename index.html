@@ -76,7 +76,7 @@ button {
 <input id="nome">
 
 <label>CPF</label>
-<input id="cpf">
+<input id="cpf" placeholder="000.000.000-00">
 
 <label>Data de nascimento</label>
 <input type="date" id="nascimento">
@@ -84,7 +84,7 @@ button {
 <label>E-mail</label>
 <div style="position:relative;">
 <input id="email" autocomplete="off">
-<div id="sugestoesEmail" style="position:absolute;width:100%;background:#fff;border:1px solid #ccc;border-radius:10px;margin-top:5px;display:none;z-index:10;"></div>
+<div id="sugestoesEmail" style="position:absolute;width:100%;background:#fff;border:1px solid #ccc;border-radius:10px;margin-top:5px;display:none;"></div>
 </div>
 
 <label>Telefone (WhatsApp)</label>
@@ -117,7 +117,15 @@ button {
 </select>
 
 <label>Dia de vencimento das parcelas</label>
-<input id="vencimento">
+<select id="vencimento">
+<option value="">Selecione</option>
+<option>Dia 5</option>
+<option>Dia 10</option>
+<option>Dia 15</option>
+<option>Dia 20</option>
+<option>Dia 25</option>
+<option>Dia 30</option>
+</select>
 
 <div style="font-size:12px; color:#777; margin-top:5px;">
 Cores a consultar com o atendente
@@ -161,7 +169,17 @@ Li e aceito os termos de compra
 
 <script>
 
-// máscara telefone
+// CPF
+document.getElementById("cpf").addEventListener("input", function(e){
+ let v = e.target.value.replace(/\D/g,"");
+ if(v.length > 11) v = v.slice(0,11);
+ v = v.replace(/(\d{3})(\d)/, "$1.$2");
+ v = v.replace(/(\d{3})(\d)/, "$1.$2");
+ v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+ e.target.value = v;
+});
+
+// TELEFONE
 document.getElementById("telefone").addEventListener("input", function(e){
  let v = e.target.value.replace(/\D/g,"");
  if(v.length > 11) v = v.slice(0,11);
@@ -177,36 +195,29 @@ document.getElementById("telefone").addEventListener("input", function(e){
  e.target.value = v;
 });
 
-// sugestão email
+// EMAIL
 let emailInput = document.getElementById("email");
 let box = document.getElementById("sugestoesEmail");
-
 let dominios = ["@gmail.com", "@hotmail.com", "@outlook.com"];
 
 emailInput.addEventListener("input", function(){
  let valor = emailInput.value;
-
  if(valor.includes("@") || valor.length < 2){
    box.style.display = "none";
    return;
  }
-
  box.innerHTML = "";
-
  dominios.forEach(d => {
    let item = document.createElement("div");
    item.style.padding = "10px";
    item.style.cursor = "pointer";
    item.innerText = valor + d;
-
    item.onclick = () => {
      emailInput.value = valor + d;
      box.style.display = "none";
    };
-
    box.appendChild(item);
  });
-
  box.style.display = "block";
 });
 
@@ -231,12 +242,7 @@ function buscarCEP(){
  }
 }
 
-// 🔥 CORREÇÃO DE EMOJIS
-function normalizarTexto(txt){
- return txt.normalize("NFC");
-}
-
-// enviar
+// ENVIAR
 function enviar(){
 
 let nome = document.getElementById("nome").value;
@@ -263,33 +269,41 @@ if(!nome || !cpf || !telefone || !aparelho){
  return;
 }
 
+if(cpf.length < 14){
+ alert("CPF incompleto");
+ return;
+}
+
 if(!termos){
  alert("Você precisa aceitar os termos para continuar");
  return;
 }
 
-let mensagem = normalizarTexto(`Cadastro - Versus Apple Oficial
+let mensagem = "Cadastro - Versus Apple Oficial\n\n" +
 
-Nome: ${nome}
-CPF: ${cpf}
-Nascimento: ${nascimento}
-E-mail: ${email}
-Telefone: ${telefone}
+"Nome: " + nome + "\n" +
+"CPF: " + cpf + "\n" +
+"Nascimento: " + nascimento + "\n" +
+"E-mail: " + email + "\n" +
+"Telefone: " + telefone + "\n\n" +
 
-📱 Aparelho: ${aparelho}
-📅 Vencimento: ${vencimento}
+"\uD83D\uDCF1 Aparelho: " + aparelho + "\n" +
+"\uD83D\uDCC5 Vencimento: " + vencimento + "\n\n" +
 
-Endereço:
-CEP: ${cep}
-Rua: ${rua}, Nº ${numero}
-Bairro: ${bairro}
-Cidade: ${cidade}
-Estado: ${estado}
+"Endereço:\n" +
+"CEP: " + cep + "\n" +
+"Rua: " + rua + ", Nº " + numero + "\n" +
+"Bairro: " + bairro + "\n" +
+"Cidade: " + cidade + "\n" +
+"Estado: " + estado + "\n\n" +
 
-Observações: ${observacao}
+"Observações: " + observacao + "\n\n" +
 
-🌐 Site:
-https://sandwiche.me/vsapplestore`);
+"\uD83D\uDD12 Dados protegidos:\n" +
+"Seus dados foram utilizados exclusivamente para análise de cadastro, emissão de boletos e aprovação em sistema.\n" +
+"As informações estão protegidas e armazenadas com segurança.\n\n" +
+
+"\uD83C\uDF10 Site:\nhttps://sandwiche.me/vsapplestore";
 
 let url = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
 
