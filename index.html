@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Diamond Tecnologia Apple</title>
+<title>Versus Tecnologia Gamer</title>
 
 <style>
 body {
@@ -21,8 +22,16 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-h2 { text-align:center; }
-.insta { text-align:center; color:#6e6e73; margin-bottom:20px; }
+h2 { 
+    text-align:center;
+    color:#7b2cff;
+}
+
+.insta { 
+    text-align:center; 
+    color:#6e6e73; 
+    margin-bottom:20px; 
+}
 
 h3 { margin-top:25px; }
 
@@ -40,6 +49,7 @@ input, select, textarea {
     border-radius:12px;
     border:1px solid #d2d2d7;
     background:#fafafa;
+    box-sizing:border-box;
 }
 
 button {
@@ -48,7 +58,7 @@ button {
     margin-top:25px;
     border:none;
     border-radius:14px;
-    background:linear-gradient(135deg,#0071e3,#0a84ff);
+    background:linear-gradient(135deg,#7b2cff,#9b59ff);
     color:#fff;
     font-weight:bold;
     cursor:pointer;
@@ -67,8 +77,8 @@ button {
 
 <div class="container">
 
-<h2>Diamond Tecnologia Apple</h2>
-<div class="insta">@diamondtecnologiia</div>
+<h2>Versus Tecnologia Gamer</h2>
+<div class="insta">@versustechgamer</div>
 
 <h3>Dados Pessoais</h3>
 
@@ -84,7 +94,7 @@ button {
 <label>E-mail</label>
 <div style="position:relative;">
 <input id="email" autocomplete="off">
-<div id="sugestoesEmail" style="position:absolute;width:100%;background:#fff;border:1px solid #ccc;border-radius:10px;margin-top:5px;display:none;"></div>
+<div id="sugestoesEmail" style="position:absolute;width:100%;background:#fff;border:1px solid #ccc;border-radius:10px;margin-top:5px;display:none;z-index:10;"></div>
 </div>
 
 <label>Telefone (WhatsApp)</label>
@@ -114,6 +124,7 @@ button {
 <option>17 Pro 256GB</option>
 <option>17 Pro Max 256GB</option>
 <option>PlayStation 5 Slim 1TB</option>
+<option>Xbox Series X</option>
 </select>
 
 <label>Dia de vencimento das parcelas</label>
@@ -183,6 +194,7 @@ document.getElementById("cpf").addEventListener("input", function(e){
 document.getElementById("telefone").addEventListener("input", function(e){
  let v = e.target.value.replace(/\D/g,"");
  if(v.length > 11) v = v.slice(0,11);
+
  if(v.length > 10){
   v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
  } else if(v.length > 6){
@@ -192,6 +204,7 @@ document.getElementById("telefone").addEventListener("input", function(e){
  } else {
   v = v.replace(/^(\d*)/, "($1");
  }
+
  e.target.value = v;
 });
 
@@ -201,45 +214,66 @@ let box = document.getElementById("sugestoesEmail");
 let dominios = ["@gmail.com", "@hotmail.com", "@outlook.com"];
 
 emailInput.addEventListener("input", function(){
+
  let valor = emailInput.value;
+
  if(valor.includes("@") || valor.length < 2){
    box.style.display = "none";
    return;
  }
+
  box.innerHTML = "";
+
  dominios.forEach(d => {
+
    let item = document.createElement("div");
+
    item.style.padding = "10px";
    item.style.cursor = "pointer";
+
    item.innerText = valor + d;
+
    item.onclick = () => {
      emailInput.value = valor + d;
      box.style.display = "none";
    };
+
    box.appendChild(item);
+
  });
+
  box.style.display = "block";
+
 });
 
 document.addEventListener("click", function(e){
+
  if(!emailInput.contains(e.target)){
    box.style.display = "none";
  }
+
 });
 
 // CEP
 function buscarCEP(){
+
  let cep = document.getElementById("cep").value.replace(/\D/g,'');
+
  if(cep.length==8){
+
  fetch(`https://viacep.com.br/ws/${cep}/json/`)
  .then(r=>r.json())
  .then(d=>{
+
   rua.value=d.logradouro||"";
   bairro.value=d.bairro||"";
   cidade.value=d.localidade||"";
   estado.value=d.uf||"";
+
  });
+
  }
+
 }
 
 // ENVIAR
@@ -279,7 +313,7 @@ if(!termos){
  return;
 }
 
-let mensagem = "Cadastro - Diamond Tecnologia Apple\n\n" +
+let mensagem = "Cadastro - Versus Tecnologia Gamer\n\n" +
 
 "• DADOS DO CLIENTE\n" +
 "Nome: " + nome + "\n" +
@@ -306,7 +340,7 @@ observacao + "\n\n" +
 "Cadastro enviado para análise e aprovação.\n\n" +
 
 "• LINK\n" +
-"https://sandwiche.me/diamondtech";
+"https://sandwiche.me/vsapplestore";
 
 let url = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
 
@@ -317,3 +351,5 @@ window.location.href = url;
 
 </body>
 </html>
+```
+
