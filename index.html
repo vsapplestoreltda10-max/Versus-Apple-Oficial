@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Diamond Tecnologia</title>
+<title>Versus Tecnologia</title>
 
 <style>
 body {
@@ -23,7 +23,7 @@ body {
 
 h2 { 
     text-align:center;
-    color:#007bff;
+    color:#6f42c1; /* Alterado para Roxo */
 }
 
 .insta { 
@@ -57,7 +57,7 @@ button {
     margin-top:25px;
     border:none;
     border-radius:14px;
-    background:linear-gradient(135deg,#007bff,#3ea0ff);
+    background:linear-gradient(135deg,#6f42c1,#9b6bc7); /* Gradiente Alterado para Roxo */
     color:#fff;
     font-weight:bold;
     cursor:pointer;
@@ -76,8 +76,8 @@ button {
 
 <div class="container">
 
-<h2>Diamond Tecnologia</h2>
-<div class="insta">@diamondtecnologia</div>
+<h2>Versus Tecnologia</h2>
+<div class="insta">@vesusgamer</div>
 
 <h3>Dados Pessoais</h3>
 
@@ -264,10 +264,10 @@ function buscarCEP(){
  .then(r=>r.json())
  .then(d=>{
 
-  rua.value=d.logradouro||"";
-  bairro.value=d.bairro||"";
-  cidade.value=d.localidade||"";
-  estado.value=d.uf||"";
+ rua.value=d.logradouro||"";
+ bairro.value=d.bairro||"";
+ cidade.value=d.localidade||"";
+ estado.value=d.uf||"";
 
  });
 
@@ -312,7 +312,8 @@ if(!termos){
  return;
 }
 
-let mensagem = "Cadastro - Diamond Tecnologia\n\n" +
+// Alterado o cabeçalho do texto da mensagem do WhatsApp
+let mensagem = "Cadastro - Versus Tecnologia\n\n" +
 
 "• DADOS DO CLIENTE\n" +
 "Nome: " + nome + "\n" +
@@ -336,10 +337,7 @@ let mensagem = "Cadastro - Diamond Tecnologia\n\n" +
 observacao + "\n\n" +
 
 "• STATUS\n" +
-"Cadastro enviado para análise e aprovação.\n\n" +
-
-"• LINK\n" +
-"https://sandwiche.me/diamondtech";
+"Cadastro enviado para análise e aprovação.";
 
 let url = "https://wa.me/5511944967694?text=" + encodeURIComponent(mensagem);
 
