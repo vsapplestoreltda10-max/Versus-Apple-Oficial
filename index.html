@@ -16,12 +16,7 @@
             --text-muted: #aaa;
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: 'Poppins', sans-serif; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
         body {
             background: var(--dark-bg);
@@ -43,38 +38,14 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
-        h2 { 
-            text-align: center; 
-            color: #fff;
-            font-weight: 800;
-            font-size: 26px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 30px; /* Ajustado por conta da saída do Insta */
-        }
-        
-        h2 span {
-            color: var(--primary);
-        }
+        .logo-img { width: 140px; display: block; margin: 0 auto 20px auto; }
 
-        h3 { 
-            margin-top: 30px; 
-            margin-bottom: 15px;
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fff;
-            border-left: 3px solid var(--primary);
-            padding-left: 10px;
-        }
+        h2 { text-align: center; color: #fff; font-weight: 800; font-size: 26px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 30px; }
+        h2 span { color: var(--primary); }
 
-        label {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 15px;
-            display: block;
-            font-weight: 500;
-        }
+        h3 { margin-top: 30px; margin-bottom: 15px; font-size: 16px; font-weight: 700; text-transform: uppercase; color: #fff; border-left: 3px solid var(--primary); padding-left: 10px; }
+
+        label { font-size: 12px; color: var(--text-muted); margin-top: 15px; display: block; font-weight: 500; }
 
         input, select, textarea {
             width: 100%;
@@ -89,11 +60,7 @@
             outline: none;
         }
 
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(174, 82, 255, 0.2);
-            background: #222;
-        }
+        input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(174, 82, 255, 0.2); background: #222; }
 
         select {
             appearance: none;
@@ -102,16 +69,6 @@
             background-repeat: no-repeat;
             background-position: right 16px center;
             background-size: 16px;
-        }
-
-        option {
-            background: var(--card-bg);
-            color: #fff;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 80px;
         }
 
         button {
@@ -125,79 +82,32 @@
             font-size: 16px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
             cursor: pointer;
             box-shadow: 0 5px 20px var(--purple-glow);
             transition: all 0.3s ease;
         }
 
-        button:hover {
-            background: #943be3;
-            box-shadow: 0 8px 25px rgba(174, 82, 255, 0.5);
-            transform: translateY(-2px);
-        }
+        button:hover { background: #943be3; box-shadow: 0 8px 25px rgba(174, 82, 255, 0.5); transform: translateY(-2px); }
 
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
+        .checkbox-container { display: flex; align-items: center; margin-top: 20px; cursor: pointer; font-size: 13px; color: var(--text-muted); }
+        .checkbox-container input { width: auto; margin-right: 12px; accent-color: var(--primary); transform: scale(1.2); }
 
-        .checkbox-container input {
-            width: auto;
-            margin-top: 0;
-            margin-right: 12px;
-            cursor: pointer;
-            accent-color: var(--primary);
-            transform: scale(1.2);
-        }
+        .sugestoes-box { position: absolute; width: 100%; background: #1f1f1f; border: 1px solid rgba(174, 82, 255, 0.3); border-radius: 12px; margin-top: 5px; z-index: 10; display: none; }
+        .sugestoes-box div { padding: 12px 16px; cursor: pointer; }
+        .sugestoes-box div:hover { background: var(--primary); }
 
-        .sugestoes-box {
-            position: absolute;
-            width: 100%;
-            background: #1f1f1f;
-            border: 1px solid rgba(174, 82, 255, 0.3);
-            border-radius: 12px;
-            margin-top: 5px;
-            z-index: 10;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            overflow: hidden;
-            display: none;
-        }
-
-        .sugestoes-box div {
-            padding: 12px 16px;
-            cursor: pointer;
-            font-size: 14px;
-            color: #fff;
-            transition: background 0.2s;
-        }
-
-        .sugestoes-box div:hover {
-            background: var(--primary);
-        }
-
-        .footer {
-            font-size: 12px;
-            text-align: center;
-            margin-top: 25px;
-            color: #666;
-            line-height: 1.4;
-        }
+        .footer { font-size: 12px; text-align: center; margin-top: 25px; color: #666; }
     </style>
 </head>
 
 <body>
 
 <div class="container">
-
+    <img src="https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png" alt="Versus Tecnologia" class="logo-img">
+    
     <h2>Versus <span>Tecnologia</span></h2>
 
     <h3>Dados Pessoais</h3>
-
     <label>Nome completo</label>
     <input id="nome" placeholder="Digite seu nome completo">
 
@@ -217,7 +127,6 @@
     <input id="telefone" placeholder="(00) 00000-0000">
 
     <h3>Compra</h3>
-
     <label>Aparelhos com disponibilidade</label>
     <select id="aparelho">
         <option value="">Selecione um aparelho</option>
@@ -241,10 +150,6 @@
         <option>Xbox Series X</option>
     </select>
 
-    <div style="font-size:11px; color:#666; margin-top:6px; padding-left: 2px; margin-bottom: 5px;">
-        * Cores a consultar com o atendente
-    </div>
-
     <label>Dia de vencimento das parcelas</label>
     <select id="vencimento">
         <option value="">Selecione o dia</option>
@@ -257,184 +162,126 @@
     </select>
 
     <h3>Endereço</h3>
-
     <label>CEP</label>
     <input id="cep" onblur="buscarCEP()" placeholder="00000-000">
-
     <label>Rua</label>
     <input id="rua" placeholder="Rua / Avenida">
-
     <label>Número</label>
     <input id="numero" placeholder="Nº">
-
     <label>Bairro</label>
     <input id="bairro" placeholder="Bairro">
-
     <label>Cidade</label>
     <input id="cidade" placeholder="Cidade">
-
     <label>Estado</label>
     <input id="estado" placeholder="UF">
-
     <label>Observações para entrega</label>
     <textarea id="observacao" placeholder="Ex: Apartamento, bloco, referências..."></textarea>
 
     <label class="checkbox-container">
-        <input type="checkbox" id="termos">
-        Li e aceito os termos de compra
+        <input type="checkbox" id="termos"> Li e aceito os termos de compra
     </label>
 
     <button onclick="enviar()">Finalizar Cadastro</button>
 
-    <div class="footer">
-        🔒 Seus dados são criptografados e utilizados apenas para análise e envio do pedido de forma segura.
-    </div>
-
+    <div class="footer">🔒 Seus dados são criptografados.</div>
 </div>
 
 <script>
-// CPF Mascara
-document.getElementById("cpf").addEventListener("input", function(e){
- let v = e.target.value.replace(/\D/g,"");
- if(v.length > 11) v = v.slice(0,11);
- v = v.replace(/(\d{3})(\d)/, "$1.$2");
- v = v.replace(/(\d{3})(\d)/, "$1.$2");
- v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
- e.target.value = v;
-});
+    // Máscara CPF
+    document.getElementById("cpf").addEventListener("input", function(e){
+        let v = e.target.value.replace(/\D/g,"");
+        if(v.length > 11) v = v.slice(0,11);
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d)/, "$1.$2");
+        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        e.target.value = v;
+    });
 
-// TELEFONE Mascara
-document.getElementById("telefone").addEventListener("input", function(e){
- let v = e.target.value.replace(/\D/g,"");
- if(v.length > 11) v = v.slice(0,11);
+    // Máscara Telefone
+    document.getElementById("telefone").addEventListener("input", function(e){
+        let v = e.target.value.replace(/\D/g,"");
+        if(v.length > 11) v = v.slice(0,11);
+        if(v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+        else if(v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+        else if(v.length > 2) v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+        else v = v.replace(/^(\d*)/, "($1");
+        e.target.value = v;
+    });
 
- if(v.length > 10){
-  v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
- } else if(v.length > 6){
-  v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
- } else if(v.length > 2){
-  v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
- } else {
-  v = v.replace(/^(\d*)/, "($1");
- }
+    // Sugestão de E-mail
+    let emailInput = document.getElementById("email");
+    let box = document.getElementById("sugestoesEmail");
+    let dominios = ["@gmail.com", "@hotmail.com", "@outlook.com"];
+    emailInput.addEventListener("input", function(){
+        let valor = emailInput.value;
+        if(valor.includes("@") || valor.length < 2){ box.style.display = "none"; return; }
+        box.innerHTML = "";
+        dominios.forEach(d => {
+            let item = document.createElement("div");
+            item.innerText = valor + d;
+            item.onclick = () => { emailInput.value = valor + d; box.style.display = "none"; };
+            box.appendChild(item);
+        });
+        box.style.display = "block";
+    });
 
- e.target.value = v;
-});
-
-// EMAIL Sugestões
-let emailInput = document.getElementById("email");
-let box = document.getElementById("sugestoesEmail");
-let dominios = ["@gmail.com", "@hotmail.com", "@outlook.com"];
-
-emailInput.addEventListener("input", function(){
- let valor = emailInput.value;
-
- if(valor.includes("@") || valor.length < 2){
-   box.style.display = "none";
-   return;
- }
-
- box.innerHTML = "";
-
- dominios.forEach(d => {
-   let item = document.createElement("div");
-   item.innerText = valor + d;
-   item.onclick = () => {
-     emailInput.value = valor + d;
-     box.style.display = "none";
-   };
-   box.appendChild(item);
- });
-
- box.style.display = "block";
-});
-
-document.addEventListener("click", function(e){
- if(!emailInput.contains(e.target)){
-   box.style.display = "none";
- }
-});
-
-// CEP Busca Automática
-function buscarCEP(){
- let cep = document.getElementById("cep").value.replace(/\D/g,'');
- if(cep.length==8){
-     fetch(`https://viacep.com.br/ws/${cep}/json/`)
-     .then(r=>r.json())
-     .then(d=>{
-         document.getElementById("rua").value=d.logradouro||"";
-         document.getElementById("bairro").value=d.bairro||"";
-         document.getElementById("cidade").value=d.localidade||"";
-         document.getElementById("estado").value=d.uf||"";
-     });
- }
-}
-
-// ENVIAR
-function enviar(){
-    let nome = document.getElementById("nome").value;
-    let cpf = document.getElementById("cpf").value;
-    let nascimento = document.getElementById("nascimento").value;
-    let email = document.getElementById("email").value;
-    let telefone = document.getElementById("telefone").value;
-
-    let aparelho = document.getElementById("aparelho").value;
-    let vencimento = document.getElementById("vencimento").value;
-
-    let cep = document.getElementById("cep").value;
-    let rua = document.getElementById("rua").value;
-    let numero = document.getElementById("numero").value;
-    let bairro = document.getElementById("bairro").value;
-    let cidade = document.getElementById("cidade").value;
-    let estado = document.getElementById("estado").value;
-
-    let observacao = document.getElementById("observacao").value;
-    let termos = document.getElementById("termos").checked;
-
-    if(!nome || !cpf || !telefone || !aparelho){
-     alert("Preencha os campos obrigatórios");
-     return;
+    // Busca CEP
+    function buscarCEP(){
+        let cep = document.getElementById("cep").value.replace(/\D/g,'');
+        if(cep.length==8){
+            fetch(`https://viacep.com.br/ws/${cep}/json/`).then(r=>r.json()).then(d=>{
+                document.getElementById("rua").value=d.logradouro||"";
+                document.getElementById("bairro").value=d.bairro||"";
+                document.getElementById("cidade").value=d.localidade||"";
+                document.getElementById("estado").value=d.uf||"";
+            });
+        }
     }
 
-    if(cpf.length < 14){
-     alert("CPF incompleto");
-     return;
+    // Função de Envio com a Mensagem Formatada
+    function enviar(){
+        let nome = document.getElementById("nome").value;
+        let cpf = document.getElementById("cpf").value;
+        let nasc = document.getElementById("nascimento").value;
+        let email = document.getElementById("email").value;
+        let tel = document.getElementById("telefone").value;
+        let aparelho = document.getElementById("aparelho").value;
+        let venc = document.getElementById("vencimento").value;
+        let rua = document.getElementById("rua").value;
+        let num = document.getElementById("numero").value;
+        let bairro = document.getElementById("bairro").value;
+        let cid = document.getElementById("cidade").value;
+        let est = document.getElementById("estado").value;
+        let obs = document.getElementById("observacao").value;
+        let termos = document.getElementById("termos").checked;
+
+        if(!nome || !cpf || !tel || !aparelho || !termos){ 
+            alert("Por favor, preencha os campos obrigatórios e aceite os termos."); 
+            return; 
+        }
+        
+        let msg = `*NOVO PEDIDO - VERSUS TECNOLOGIA*
+-------------------------
+*DADOS DO CLIENTE*
+Nome: ${nome}
+CPF: ${cpf}
+Nascimento: ${nasc}
+E-mail: ${email}
+Telefone: ${tel}
+
+*PEDIDO*
+Aparelho: ${aparelho}
+Vencimento: ${venc}
+
+*ENDEREÇO DE ENTREGA*
+Rua: ${rua}, ${num}
+Bairro: ${bairro}
+Cidade: ${cid} - ${est}
+Obs: ${obs}
+-------------------------`;
+
+        window.location.href = "https://wa.me/5511948559200?text=" + encodeURIComponent(msg);
     }
-
-    if(!termos){
-     alert("Você precisa aceitar os termos para continuar");
-     return;
-    }
-
-    let mensagem = "Cadastro - Versus Tecnologia\n\n" +
-    "• DADOS DO CLIENTE\n" +
-    "Nome: " + nome + "\n" +
-    "CPF: " + cpf + "\n" +
-    "Nascimento: " + nascimento + "\n" +
-    "E-mail: " + email + "\n" +
-    "Telefone: " + telefone + "\n\n" +
-
-    "• DADOS DA COMPRA\n" +
-    "Aparelho: " + aparelho + "\n" +
-    "Vencimento: " + vencimento + "\n\n" +
-
-    "• ENDEREÇO\n" +
-    "CEP: " + cep + "\n" +
-    "Rua: " + rua + ", Nº " + numero + "\n" +
-    "Bairro: " + bairro + "\n" +
-    "Cidade: " + cidade + "\n" +
-    "Estado: " + estado + "\n\n" +
-
-    "• OBSERVAÇÕES\n" +
-    observacao + "\n\n" +
-
-    "• STATUS\n" +
-    "Cadastro enviado para análise e aprovação.";
-
-    let url = "https://wa.me/5511948559200?text=" + encodeURIComponent(mensagem);
-    window.location.href = url;
-}
 </script>
-
 </body>
 </html>
