@@ -1,266 +1,1022 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Versus Tecnologia | Cadastro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root { 
-            --primary: #ae52ff; 
-            --dark-bg: #050505; 
-            --card-bg: #111111; 
-            --input-bg: #1a1a1a;
-            --purple-glow: rgba(174, 82, 255, 0.3);
-            --text-muted: #aaa;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Versus Tecnologia | Cadastro</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        body {
-            background: var(--dark-bg);
-            color: #fff;
-            padding: 20px 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+<style>
+:root {
+    --primary: #ae52ff;
+    --primary-dark: #8d32dc;
+    --dark-bg: #050505;
+    --card-bg: #111111;
+    --input-bg: #1a1a1a;
+    --border: rgba(255,255,255,.08);
+    --text-muted: #999;
+    --purple-glow: rgba(174,82,255,.25);
+}
 
-        .container {
-            width: 100%;
-            max-width: 450px;
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 24px;
-            border: 1px solid rgba(174, 82, 255, 0.15);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-        .logo-img { width: 140px; display: block; margin: 0 auto 20px auto; }
+body {
+    background:
+        radial-gradient(circle at top, rgba(174,82,255,.12), transparent 38%),
+        var(--dark-bg);
+    color: #fff;
+    padding: 20px 12px;
+    min-height: 100vh;
+}
 
-        h2 { text-align: center; color: #fff; font-weight: 800; font-size: 26px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 30px; }
-        h2 span { color: var(--primary); }
+.container {
+    width: 100%;
+    max-width: 470px;
+    margin: auto;
+    background: rgba(17,17,17,.97);
+    padding: 35px 28px;
+    border-radius: 26px;
+    border: 1px solid rgba(174,82,255,.16);
+    box-shadow: 0 25px 60px rgba(0,0,0,.65);
+}
 
-        h3 { margin-top: 30px; margin-bottom: 15px; font-size: 16px; font-weight: 700; text-transform: uppercase; color: #fff; border-left: 3px solid var(--primary); padding-left: 10px; }
+.logo-img {
+    width: 135px;
+    display: block;
+    margin: 0 auto 16px;
+}
 
-        label { font-size: 12px; color: var(--text-muted); margin-top: 15px; display: block; font-weight: 500; }
+h2 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 800;
+    margin-bottom: 32px;
+}
 
-        input, select, textarea {
-            width: 100%;
-            padding: 14px 16px;
-            margin-top: 6px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: var(--input-bg);
-            color: #fff;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            outline: none;
-        }
+h2 span {
+    color: var(--primary);
+}
 
-        input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(174, 82, 255, 0.2); background: #222; }
+h3 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 30px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-left: 3px solid var(--primary);
+    padding-left: 10px;
+}
 
-        select {
-            appearance: none;
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ae52ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            background-size: 16px;
-        }
+.section-icon {
+    color: var(--primary);
+    width: 18px;
+    height: 18px;
+}
 
-        button {
-            width: 100%;
-            padding: 16px;
-            margin-top: 35px;
-            border: none;
-            border-radius: 14px;
-            background: var(--primary);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 5px 20px var(--purple-glow);
-            transition: all 0.3s ease;
-        }
+/* TÍTULO DO CAMPO */
 
-        button:hover { background: #943be3; box-shadow: 0 8px 25px rgba(174, 82, 255, 0.5); transform: translateY(-2px); }
+.field {
+    margin-top: 16px;
+}
 
-        .checkbox-container { display: flex; align-items: center; margin-top: 20px; cursor: pointer; font-size: 13px; color: var(--text-muted); }
-        .checkbox-container input { width: auto; margin-right: 12px; accent-color: var(--primary); transform: scale(1.2); }
+.field-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: #aaa;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
 
-        .sugestoes-box { position: absolute; width: 100%; background: #1f1f1f; border: 1px solid rgba(174, 82, 255, 0.3); border-radius: 12px; margin-top: 5px; z-index: 10; display: none; }
-        .sugestoes-box div { padding: 12px 16px; cursor: pointer; }
-        .sugestoes-box div:hover { background: var(--primary); }
+/* CAMPO + QUADRADO DO ÍCONE */
 
-        .footer { font-size: 12px; text-align: center; margin-top: 25px; color: #666; }
-    </style>
+.input-group {
+    display: flex;
+    width: 100%;
+    height: 50px;
+}
+
+.input-icon {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #202020;
+    border: 1px solid rgba(174,82,255,.22);
+    border-right: none;
+
+    border-radius: 13px 0 0 13px;
+
+    color: var(--primary);
+}
+
+.input-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.input-group input,
+.input-group select {
+    flex: 1;
+    min-width: 0;
+    height: 50px;
+
+    padding: 0 15px;
+
+    border-radius: 0 13px 13px 0;
+    border: 1px solid var(--border);
+
+    background: var(--input-bg);
+    color: #fff;
+
+    font-size: 14px;
+    outline: none;
+    transition: .25s;
+}
+
+.input-group input::placeholder {
+    color: #555;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(174,82,255,.08);
+    background: #202020;
+}
+
+/* QUANDO O CAMPO ESTÁ FOCADO, DESTACA O QUADRADO */
+
+.input-group:focus-within .input-icon {
+    border-color: var(--primary);
+    background: rgba(174,82,255,.10);
+}
+
+/* SELECT */
+
+.input-group select {
+    cursor: pointer;
+    appearance: none;
+
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--primary) 50%),
+        linear-gradient(135deg, var(--primary) 50%, transparent 50%);
+
+    background-position:
+        calc(100% - 18px) 21px,
+        calc(100% - 13px) 21px;
+
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+}
+
+/* TEXTAREA */
+
+.textarea-group {
+    display: flex;
+    width: 100%;
+}
+
+.textarea-group .input-icon {
+    min-height: 100px;
+    height: auto;
+    align-items: flex-start;
+    padding-top: 15px;
+}
+
+.textarea-group textarea {
+    flex: 1;
+    min-width: 0;
+    min-height: 100px;
+
+    resize: vertical;
+
+    padding: 14px 15px;
+
+    border-radius: 0 13px 13px 0;
+    border: 1px solid var(--border);
+
+    background: var(--input-bg);
+    color: #fff;
+
+    font-size: 14px;
+    outline: none;
+}
+
+.textarea-group textarea:focus {
+    border-color: var(--primary);
+    background: #202020;
+}
+
+/* EMAIL */
+
+.email-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.sugestoes-box {
+    position: absolute;
+    width: calc(100% - 50px);
+    right: 0;
+    top: 55px;
+
+    background: #202020;
+    border: 1px solid rgba(174,82,255,.3);
+    border-radius: 12px;
+
+    overflow: hidden;
+    z-index: 20;
+    display: none;
+}
+
+.sugestoes-box div {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.sugestoes-box div:hover {
+    background: var(--primary);
+}
+
+/* CHECKBOX */
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 23px;
+
+    font-size: 12px;
+    color: #999;
+
+    cursor: pointer;
+}
+
+.checkbox-container input {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+/* BOTÃO */
+
+button {
+    width: 100%;
+    padding: 16px;
+
+    margin-top: 30px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px var(--purple-glow);
+
+    transition: .25s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(174,82,255,.4);
+}
+
+.footer {
+    text-align: center;
+    margin-top: 22px;
+    color: #555;
+    font-size: 11px;
+}
+
+/* CELULAR */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 28px 18px;
+        border-radius: 22px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    .input-icon {
+        width: 48px;
+        min-width: 48px;
+    }
+
+    .input-group input,
+    .input-group select {
+        font-size: 13px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
-    <img src="https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png" alt="Versus Tecnologia" class="logo-img">
-    
-    <h2>Versus <span>Tecnologia</span></h2>
 
-    <h3>Dados Pessoais</h3>
-    <label>Nome completo</label>
-    <input id="nome" placeholder="Digite seu nome completo">
+<img
+src="https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png"
+alt="Versus Tecnologia"
+class="logo-img"
+>
 
-    <label>CPF</label>
-    <input id="cpf" placeholder="000.000.000-00">
+<h2>Versus <span>Tecnologia</span></h2>
 
-    <label>Data de nascimento</label>
-    <input type="date" id="nascimento">
 
-    <label>E-mail</label>
-    <div style="position:relative;">
-        <input id="email" autocomplete="off" placeholder="seuemail@exemplo.com">
-        <div id="sugestoesEmail" class="sugestoes-box"></div>
-    </div>
+<!-- DADOS PESSOAIS -->
 
-    <label>Telefone (WhatsApp)</label>
-    <input id="telefone" placeholder="(00) 00000-0000">
+<h3>
+<svg class="section-icon" viewBox="0 0 24 24">
+<circle cx="12" cy="7" r="4"/>
+<path d="M5 21c0-4 3-7 7-7s7 3 7 7"/>
+</svg>
+Dados Pessoais
+</h3>
 
-    <h3>Compra</h3>
-    <label>Aparelhos com disponibilidade</label>
-    <select id="aparelho">
-        <option value="">Selecione um aparelho</option>
-        <option>13 Normal 256GB</option>
-        <option>13 Pro Max 256GB</option>
-        <option>14 Normal 256GB</option>
-        <option>14 Pro 256GB</option>
-        <option>14 Pro Max 256GB</option>
-        <option>15 Normal 256GB</option>
-        <option>15 Plus 256GB</option>
-        <option>15 Pro 256GB</option>
-        <option>15 Pro Max 256GB</option>
-        <option>16 Normal 256GB</option>
-        <option>16 Pro 256GB</option>
-        <option>16 Pro Max 256GB</option>
-        <option>17 Normal 256GB</option>
-        <option>17 Air 256GB</option>
-        <option>17 Pro 256GB</option>
-        <option>17 Pro Max 256GB</option>
-        <option>PlayStation 5 Slim 1TB</option>
-        <option>Xbox Series X</option>
-    </select>
 
-    <label>Dia de vencimento das parcelas</label>
-    <select id="vencimento">
-        <option value="">Selecione o dia</option>
-        <option>Dia 5</option>
-        <option>Dia 10</option>
-        <option>Dia 15</option>
-        <option>Dia 20</option>
-        <option>Dia 25</option>
-        <option>Dia 30</option>
-    </select>
+<!-- NOME -->
 
-    <h3>Endereço</h3>
-    <label>CEP</label>
-    <input id="cep" onblur="buscarCEP()" placeholder="00000-000">
-    <label>Rua</label>
-    <input id="rua" placeholder="Rua / Avenida">
-    <label>Número</label>
-    <input id="numero" placeholder="Nº">
-    <label>Bairro</label>
-    <input id="bairro" placeholder="Bairro">
-    <label>Cidade</label>
-    <input id="cidade" placeholder="Cidade">
-    <label>Estado</label>
-    <input id="estado" placeholder="UF">
-    <label>Observações para entrega</label>
-    <textarea id="observacao" placeholder="Ex: Apartamento, bloco, referências..."></textarea>
+<div class="field">
 
-    <label class="checkbox-container">
-        <input type="checkbox" id="termos"> Li e aceito os termos de compra
-    </label>
-
-    <button onclick="enviar()">Finalizar Cadastro</button>
-
-    <div class="footer">🔒 Seus dados são criptografados.</div>
+<div class="field-title">
+Nome completo
 </div>
 
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<circle cx="12" cy="8" r="4"/>
+<path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
+</svg>
+</div>
+
+<input
+id="nome"
+placeholder="Digite seu nome completo"
+>
+
+</div>
+</div>
+
+
+<!-- CPF -->
+
+<div class="field">
+
+<div class="field-title">
+CPF
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<rect x="3" y="5" width="18" height="14" rx="2"/>
+<circle cx="8" cy="12" r="2"/>
+<path d="M13 10h5M13 14h5"/>
+</svg>
+</div>
+
+<input
+id="cpf"
+placeholder="000.000.000-00"
+>
+
+</div>
+</div>
+
+
+<!-- NASCIMENTO -->
+
+<div class="field">
+
+<div class="field-title">
+Data de nascimento
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<rect x="3" y="4" width="18" height="18" rx="2"/>
+<path d="M16 2v4M8 2v4M3 10h18"/>
+</svg>
+</div>
+
+<input
+type="date"
+id="nascimento"
+>
+
+</div>
+</div>
+
+
+<!-- EMAIL -->
+
+<div class="field">
+
+<div class="field-title">
+E-mail
+</div>
+
+<div class="email-wrapper">
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<rect x="3" y="5" width="18" height="14" rx="2"/>
+<path d="m3 7 9 6 9-6"/>
+</svg>
+</div>
+
+<input
+id="email"
+autocomplete="off"
+placeholder="seuemail@exemplo.com"
+>
+
+</div>
+
+<div
+id="sugestoesEmail"
+class="sugestoes-box">
+</div>
+
+</div>
+</div>
+
+
+<!-- TELEFONE -->
+
+<div class="field">
+
+<div class="field-title">
+Telefone (WhatsApp)
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L9 10.9a16 16 0 0 0 4.1 4.1l1.2-1.2a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2.9z"/>
+</svg>
+</div>
+
+<input
+id="telefone"
+placeholder="(00) 00000-0000"
+>
+
+</div>
+</div>
+
+
+<!-- COMPRA -->
+
+<h3>
+<svg class="section-icon" viewBox="0 0 24 24">
+<path d="M6 2h12v20H6z"/>
+<path d="M9 6h6M9 10h6M9 14h6"/>
+</svg>
+Compra
+</h3>
+
+
+<!-- APARELHO -->
+
+<div class="field">
+
+<div class="field-title">
+Aparelhos com disponibilidade
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<rect x="7" y="2" width="10" height="20" rx="2"/>
+<path d="M10 18h4"/>
+</svg>
+</div>
+
+<select id="aparelho">
+
+<option value="">
+Selecione um aparelho
+</option>
+
+<option>13 Normal 256GB</option>
+<option>13 Pro Max 256GB</option>
+<option>14 Normal 256GB</option>
+<option>14 Pro 256GB</option>
+<option>14 Pro Max 256GB</option>
+<option>15 Normal 256GB</option>
+<option>15 Plus 256GB</option>
+<option>15 Pro 256GB</option>
+<option>15 Pro Max 256GB</option>
+<option>16 Normal 256GB</option>
+<option>16 Pro 256GB</option>
+<option>16 Pro Max 256GB</option>
+<option>17 Normal 256GB</option>
+<option>17 Air 256GB</option>
+<option>17 Pro 256GB</option>
+<option>17 Pro Max 256GB</option>
+<option>PlayStation 5 Slim 1TB</option>
+<option>Xbox Series X</option>
+
+</select>
+
+</div>
+</div>
+
+
+<!-- VENCIMENTO -->
+
+<div class="field">
+
+<div class="field-title">
+Dia de vencimento das parcelas
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="9"/>
+<path d="M12 7v5l3 2"/>
+</svg>
+</div>
+
+<select id="vencimento">
+
+<option value="">
+Selecione o dia
+</option>
+
+<option>Dia 5</option>
+<option>Dia 10</option>
+<option>Dia 15</option>
+<option>Dia 20</option>
+<option>Dia 25</option>
+<option>Dia 30</option>
+
+</select>
+
+</div>
+</div>
+
+
+<!-- ENDEREÇO -->
+
+<h3>
+<svg class="section-icon" viewBox="0 0 24 24">
+<path d="M3 10l9-7 9 7"/>
+<path d="M5 9v11h14V9"/>
+<path d="M9 20v-6h6v6"/>
+</svg>
+Endereço
+</h3>
+
+
+<!-- CEP -->
+
+<div class="field">
+
+<div class="field-title">
+CEP
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<path d="M3 11l9-8 9 8"/>
+<path d="M5 10v10h14V10"/>
+<path d="M9 20v-6h6v6"/>
+</svg>
+</div>
+
+<input
+id="cep"
+onblur="buscarCEP()"
+placeholder="00000-000"
+>
+
+</div>
+</div>
+
+
+<!-- RUA -->
+
+<div class="field">
+
+<div class="field-title">
+Rua
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<path d="M4 20V10l8-6 8 6v10"/>
+<path d="M8 20v-6h8v6"/>
+</svg>
+</div>
+
+<input
+id="rua"
+placeholder="Rua / Avenida"
+>
+
+</div>
+</div>
+
+
+<!-- NUMERO -->
+
+<div class="field">
+
+<div class="field-title">
+Número
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<path d="M6 4h12v16H6z"/>
+<path d="M9 8h6M9 12h6M9 16h4"/>
+</svg>
+</div>
+
+<input
+id="numero"
+placeholder="Nº"
+>
+
+</div>
+</div>
+
+
+<!-- BAIRRO -->
+
+<div class="field">
+
+<div class="field-title">
+Bairro
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<path d="M3 10h18v10H3z"/>
+<path d="M7 10V6h10v4"/>
+<path d="M7 14h3M14 14h3"/>
+</svg>
+</div>
+
+<input
+id="bairro"
+placeholder="Bairro"
+>
+
+</div>
+</div>
+
+
+<!-- CIDADE -->
+
+<div class="field">
+
+<div class="field-title">
+Cidade
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<path d="M4 21V9l8-5 8 5v12"/>
+<path d="M8 21v-6h8v6"/>
+<path d="M8 11h2M14 11h2"/>
+</svg>
+</div>
+
+<input
+id="cidade"
+placeholder="Cidade"
+>
+
+</div>
+</div>
+
+
+<!-- ESTADO -->
+
+<div class="field">
+
+<div class="field-title">
+Estado
+</div>
+
+<div class="input-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<path d="M4 5h16v14H4z"/>
+<path d="M8 9h8M8 13h5"/>
+</svg>
+</div>
+
+<input
+id="estado"
+placeholder="UF"
+>
+
+</div>
+</div>
+
+
+<!-- OBSERVAÇÃO -->
+
+<div class="field">
+
+<div class="field-title">
+Observações para entrega
+</div>
+
+<div class="textarea-group">
+
+<div class="input-icon">
+<svg viewBox="0 0 24 24">
+<path d="M4 4h16v16H4z"/>
+<path d="M8 8h8M8 12h8M8 16h5"/>
+</svg>
+</div>
+
+<textarea
+id="observacao"
+placeholder="Ex: Apartamento, bloco, referências..."
+></textarea>
+
+</div>
+</div>
+
+
+<!-- TERMOS -->
+
+<label class="checkbox-container">
+
+<input type="checkbox" id="termos">
+
+Li e aceito os termos de compra
+
+</label>
+
+
+<button onclick="enviar()">
+Finalizar Cadastro
+</button>
+
+
+<div class="footer">
+🔒 Seus dados são criptografados.
+</div>
+
+</div>
+
+
 <script>
-    // Máscara CPF
-    document.getElementById("cpf").addEventListener("input", function(e){
-        let v = e.target.value.replace(/\D/g,"");
-        if(v.length > 11) v = v.slice(0,11);
-        v = v.replace(/(\d{3})(\d)/, "$1.$2");
-        v = v.replace(/(\d{3})(\d)/, "$1.$2");
-        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-        e.target.value = v;
-    });
 
-    // Máscara Telefone
-    document.getElementById("telefone").addEventListener("input", function(e){
-        let v = e.target.value.replace(/\D/g,"");
-        if(v.length > 11) v = v.slice(0,11);
-        if(v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
-        else if(v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-        else if(v.length > 2) v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
-        else v = v.replace(/^(\d*)/, "($1");
-        e.target.value = v;
-    });
+/* CPF */
 
-    // Sugestão de E-mail
-    let emailInput = document.getElementById("email");
-    let box = document.getElementById("sugestoesEmail");
-    let dominios = ["@gmail.com", "@hotmail.com", "@outlook.com"];
-    emailInput.addEventListener("input", function(){
-        let valor = emailInput.value;
-        if(valor.includes("@") || valor.length < 2){ box.style.display = "none"; return; }
-        box.innerHTML = "";
-        dominios.forEach(d => {
-            let item = document.createElement("div");
-            item.innerText = valor + d;
-            item.onclick = () => { emailInput.value = valor + d; box.style.display = "none"; };
-            box.appendChild(item);
-        });
-        box.style.display = "block";
-    });
+document.getElementById("cpf").addEventListener("input", function(e){
 
-    // Busca CEP
-    function buscarCEP(){
-        let cep = document.getElementById("cep").value.replace(/\D/g,'');
-        if(cep.length==8){
-            fetch(`https://viacep.com.br/ws/${cep}/json/`).then(r=>r.json()).then(d=>{
-                document.getElementById("rua").value=d.logradouro||"";
-                document.getElementById("bairro").value=d.bairro||"";
-                document.getElementById("cidade").value=d.localidade||"";
-                document.getElementById("estado").value=d.uf||"";
-            });
-        }
+    let v = e.target.value.replace(/\D/g,"");
+
+    if(v.length > 11)
+        v = v.slice(0,11);
+
+    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+    e.target.value = v;
+});
+
+
+/* TELEFONE */
+
+document.getElementById("telefone").addEventListener("input", function(e){
+
+    let v = e.target.value.replace(/\D/g,"");
+
+    if(v.length > 11)
+        v = v.slice(0,11);
+
+    if(v.length > 10)
+        v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+
+    else if(v.length > 6)
+        v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+
+    else if(v.length > 2)
+        v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+
+    e.target.value = v;
+});
+
+
+/* EMAIL */
+
+let emailInput = document.getElementById("email");
+
+let box = document.getElementById("sugestoesEmail");
+
+let dominios = [
+    "@gmail.com",
+    "@hotmail.com",
+    "@outlook.com"
+];
+
+emailInput.addEventListener("input", function(){
+
+    let valor = emailInput.value;
+
+    if(valor.includes("@") || valor.length < 2){
+
+        box.style.display = "none";
+
+        return;
     }
 
-    // Função de Envio com a Mensagem Formatada
-    function enviar(){
-        let nome = document.getElementById("nome").value;
-        let cpf = document.getElementById("cpf").value;
-        let nasc = document.getElementById("nascimento").value;
-        let email = document.getElementById("email").value;
-        let tel = document.getElementById("telefone").value;
-        let aparelho = document.getElementById("aparelho").value;
-        let venc = document.getElementById("vencimento").value;
-        let rua = document.getElementById("rua").value;
-        let num = document.getElementById("numero").value;
-        let bairro = document.getElementById("bairro").value;
-        let cid = document.getElementById("cidade").value;
-        let est = document.getElementById("estado").value;
-        let obs = document.getElementById("observacao").value;
-        let termos = document.getElementById("termos").checked;
+    box.innerHTML = "";
 
-        if(!nome || !cpf || !tel || !aparelho || !termos){ 
-            alert("Por favor, preencha os campos obrigatórios e aceite os termos."); 
-            return; 
-        }
-        
-        let msg = `*NOVO PEDIDO - VERSUS TECNOLOGIA*
+    dominios.forEach(d => {
+
+        let item = document.createElement("div");
+
+        item.innerText = valor + d;
+
+        item.onclick = () => {
+
+            emailInput.value = valor + d;
+
+            box.style.display = "none";
+
+        };
+
+        box.appendChild(item);
+
+    });
+
+    box.style.display = "block";
+});
+
+
+/* CEP */
+
+function buscarCEP(){
+
+    let cep =
+        document.getElementById("cep")
+        .value
+        .replace(/\D/g,'');
+
+    if(cep.length == 8){
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(r => r.json())
+        .then(d => {
+
+            document.getElementById("rua").value =
+                d.logradouro || "";
+
+            document.getElementById("bairro").value =
+                d.bairro || "";
+
+            document.getElementById("cidade").value =
+                d.localidade || "";
+
+            document.getElementById("estado").value =
+                d.uf || "";
+
+        });
+
+    }
+}
+
+
+/* ENVIO */
+
+function enviar(){
+
+    let nome =
+        document.getElementById("nome").value;
+
+    let cpf =
+        document.getElementById("cpf").value;
+
+    let nasc =
+        document.getElementById("nascimento").value;
+
+    let email =
+        document.getElementById("email").value;
+
+    let tel =
+        document.getElementById("telefone").value;
+
+    let aparelho =
+        document.getElementById("aparelho").value;
+
+    let venc =
+        document.getElementById("vencimento").value;
+
+    let rua =
+        document.getElementById("rua").value;
+
+    let num =
+        document.getElementById("numero").value;
+
+    let bairro =
+        document.getElementById("bairro").value;
+
+    let cid =
+        document.getElementById("cidade").value;
+
+    let est =
+        document.getElementById("estado").value;
+
+    let obs =
+        document.getElementById("observacao").value;
+
+    let termos =
+        document.getElementById("termos").checked;
+
+
+    if(!nome || !cpf || !tel || !aparelho || !termos){
+
+        alert(
+            "Por favor, preencha os campos obrigatórios e aceite os termos."
+        );
+
+        return;
+    }
+
+
+    let msg =
+`*NOVO PEDIDO - VERSUS TECNOLOGIA*
 -------------------------
 *DADOS DO CLIENTE*
 Nome: ${nome}
@@ -280,8 +1036,14 @@ Cidade: ${cid} - ${est}
 Obs: ${obs}
 -------------------------`;
 
-        window.location.href = "https://wa.me/5511948559200?text=" + encodeURIComponent(msg);
-    }
+
+    window.location.href =
+        "https://wa.me/5511948559200?text=" +
+        encodeURIComponent(msg);
+}
+
 </script>
+
 </body>
 </html>
+```
