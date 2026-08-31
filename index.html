@@ -49,8 +49,11 @@ body {
 
 .logo-img {
     width: 135px;
+    height: auto;
+    min-height: 40px;
     display: block;
     margin: 0 auto 16px;
+    object-fit: contain;
 }
 
 h2 {
@@ -310,6 +313,12 @@ button:hover {
     box-shadow: 0 12px 30px rgba(174,82,255,.4);
 }
 
+button:disabled {
+    cursor: wait;
+    opacity: .8;
+    transform: none;
+}
+
 .footer {
     text-align: center;
     margin-top: 22px;
@@ -317,7 +326,137 @@ button:hover {
     font-size: 11px;
 }
 
+/* ================================
+   TELA DE ENVIO
+================================ */
+
+.overlay-envio {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0,0,0,.88);
+    backdrop-filter: blur(10px);
+}
+
+.overlay-envio.ativo {
+    display: flex;
+    animation: aparecer .35s ease;
+}
+
+.caixa-envio {
+    width: 100%;
+    max-width: 390px;
+    padding: 40px 28px;
+    text-align: center;
+    background: #111;
+    border: 1px solid rgba(174,82,255,.35);
+    border-radius: 26px;
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.8),
+        0 0 40px rgba(174,82,255,.12);
+    animation: subir .45s ease;
+}
+
+.icone-envio {
+    width: 78px;
+    height: 78px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(174,82,255,.12);
+    border: 2px solid rgba(174,82,255,.45);
+}
+
+.icone-envio svg {
+    width: 38px;
+    height: 38px;
+    stroke: var(--primary);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    animation: pulsar 1.5s infinite;
+}
+
+.caixa-envio h4 {
+    font-size: 21px;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.caixa-envio p {
+    color: #888;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.barra {
+    width: 100%;
+    height: 4px;
+    margin-top: 25px;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barra::after {
+    content: "";
+    display: block;
+    width: 35%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+    animation: carregar 1.5s infinite ease-in-out;
+}
+
+@keyframes carregar {
+    0% {
+        transform: translateX(-120%);
+    }
+    100% {
+        transform: translateX(390%);
+    }
+}
+
+@keyframes pulsar {
+    0%, 100% {
+        transform: scale(1);
+        opacity: .7;
+    }
+    50% {
+        transform: scale(1.12);
+        opacity: 1;
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes subir {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
 @media (max-width: 480px) {
+
     body {
         padding: 10px;
     }
@@ -361,6 +500,7 @@ button:hover {
 <div class="container">
 
 <img
+id="logoVersus"
 src="https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png"
 alt="Versus Tecnologia"
 class="logo-img"
@@ -632,45 +772,135 @@ Ao marcar esta opção, declaro estar ciente e de acordo com o encaminhamento do
 
 </div>
 
-<button onclick="enviar()">
+<button id="btnEnviar" onclick="enviar()">
 Finalizar Cadastro
 </button>
 
 <div class="footer">
-🔒 Seus dados são criptografados.
+🔒 Seus dados são protegidos durante o envio.
+</div>
+
+</div>
+
+<!-- TELA DE ANIMAÇÃO APÓS ENVIO -->
+
+<div id="overlayEnvio" class="overlay-envio">
+
+<div class="caixa-envio">
+
+<div class="icone-envio">
+<svg viewBox="0 0 24 24">
+    <path d="M22 2L11 13"/>
+    <path d="M22 2l-7 20-4-9-9-4z"/>
+</svg>
+</div>
+
+<h4>Cadastro enviado!</h4>
+
+<p>
+Sua ficha foi preparada com sucesso.<br>
+Estamos direcionando você para o WhatsApp...
+</p>
+
+<div class="barra"></div>
+
 </div>
 
 </div>
 
 <script>
-document.getElementById("cpf").addEventListener("input", function(e) {
-    let v = e.target.value.replace(/\D/g,"");
 
-    if(v.length > 11)
-        v = v.slice(0,11);
+/* ==========================================================
+   PROTEÇÃO / RECARREGAMENTO AUTOMÁTICO DO LOGO
+========================================================== */
+
+const logo = document.getElementById("logoVersus");
+
+const logoOriginal =
+    "https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png";
+
+let tentativasLogo = 0;
+
+logo.addEventListener("error", function() {
+
+    if (tentativasLogo >= 4) return;
+
+    tentativasLogo++;
+
+    setTimeout(() => {
+
+        const separador = logoOriginal.includes("?") ? "&" : "?";
+
+        logo.src =
+            logoOriginal +
+            separador +
+            "reload=" +
+            Date.now();
+
+    }, 700 * tentativasLogo);
+
+});
+
+/* ==========================================================
+   CPF
+========================================================== */
+
+document.getElementById("cpf").addEventListener("input", function(e) {
+
+    let v = e.target.value.replace(/\D/g, "");
+
+    if (v.length > 11)
+        v = v.slice(0, 11);
 
     v = v.replace(/(\d{3})(\d)/, "$1.$2");
     v = v.replace(/(\d{3})(\d)/, "$1.$2");
     v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
 
     e.target.value = v;
+
 });
+
+/* ==========================================================
+   TELEFONE
+========================================================== */
 
 document.getElementById("telefone").addEventListener("input", function(e) {
-    let v = e.target.value.replace(/\D/g,"");
 
-    if(v.length > 11)
-        v = v.slice(0,11);
+    let v = e.target.value.replace(/\D/g, "");
 
-    if(v.length > 10)
-        v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
-    else if(v.length > 6)
-        v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
-    else if(v.length > 2)
-        v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+    if (v.length > 11)
+        v = v.slice(0, 11);
+
+    if (v.length > 10) {
+
+        v = v.replace(
+            /^(\d{2})(\d{5})(\d{4})$/,
+            "($1) $2-$3"
+        );
+
+    } else if (v.length > 6) {
+
+        v = v.replace(
+            /^(\d{2})(\d{4})(\d{0,4})$/,
+            "($1) $2-$3"
+        );
+
+    } else if (v.length > 2) {
+
+        v = v.replace(
+            /^(\d{2})(\d{0,5})$/,
+            "($1) $2"
+        );
+
+    }
 
     e.target.value = v;
+
 });
+
+/* ==========================================================
+   E-MAIL
+========================================================== */
 
 let emailInput = document.getElementById("email");
 let box = document.getElementById("sugestoesEmail");
@@ -685,9 +915,11 @@ emailInput.addEventListener("input", function() {
 
     let valor = emailInput.value;
 
-    if(valor.includes("@") || valor.length < 2) {
+    if (valor.includes("@") || valor.length < 2) {
+
         box.style.display = "none";
         return;
+
     }
 
     box.innerHTML = "";
@@ -699,28 +931,41 @@ emailInput.addEventListener("input", function() {
         item.innerText = valor + d;
 
         item.onclick = () => {
+
             emailInput.value = valor + d;
             box.style.display = "none";
+
         };
 
         box.appendChild(item);
+
     });
 
     box.style.display = "block";
+
 });
+
+/* ==========================================================
+   CEP
+========================================================== */
 
 function buscarCEP() {
 
     let cep = document
         .getElementById("cep")
         .value
-        .replace(/\D/g,'');
+        .replace(/\D/g, "");
 
-    if(cep.length === 8) {
+    if (cep.length === 8) {
 
         fetch(`https://viacep.com.br/ws/${cep}/json/`)
         .then(r => r.json())
         .then(d => {
+
+            if (d.erro) {
+                alert("CEP não encontrado.");
+                return;
+            }
 
             document.getElementById("rua").value =
                 d.logradouro || "";
@@ -733,12 +978,21 @@ function buscarCEP() {
 
             document.getElementById("estado").value =
                 d.uf || "";
+
         })
         .catch(() => {
+
             alert("Não foi possível consultar o CEP.");
+
         });
+
     }
+
 }
+
+/* ==========================================================
+   ENVIO
+========================================================== */
 
 function enviar() {
 
@@ -757,14 +1011,21 @@ function enviar() {
     let obs = document.getElementById("observacao").value.trim();
     let termos = document.getElementById("termos").checked;
 
-    if(!nome || !cpf || !tel || !aparelho || !termos) {
+    if (!nome || !cpf || !tel || !aparelho || !termos) {
 
         alert(
             "Por favor, preencha os campos obrigatórios e aceite os termos."
         );
 
         return;
+
     }
+
+    let btn = document.getElementById("btnEnviar");
+    let overlay = document.getElementById("overlayEnvio");
+
+    btn.disabled = true;
+    btn.innerText = "PROCESSANDO...";
 
     let msg =
 `*NOVO PEDIDO - VERSUS TECNOLOGIA*
@@ -791,12 +1052,21 @@ Cliente declarou estar ciente e de acordo com o encaminhamento dos dados forneci
 
 -------------------------`;
 
-    window.location.href =
-        "https://wa.me/5511948559200?text=" +
-        encodeURIComponent(msg);
+    /* Mostra a animação antes de abrir o WhatsApp */
+
+    overlay.classList.add("ativo");
+
+    setTimeout(() => {
+
+        window.location.href =
+            "https://wa.me/5511948559200?text=" +
+            encodeURIComponent(msg);
+
+    }, 1800);
+
 }
+
 </script>
 
 </body>
 </html>
-```
