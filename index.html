@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,489 +9,542 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --primary: #ae52ff;
-    --primary-dark: #8d32dc;
-    --dark-bg: #050505;
-    --card-bg: #111111;
-    --input-bg: #1a1a1a;
-    --border: rgba(255,255,255,.08);
-    --purple-glow: rgba(174,82,255,.25);
+:root{
+    --purple:#ae52ff;
+    --purple-dark:#8b35d6;
+    --bg:#050505;
+    --card:#111111;
+    --input:#191919;
+    --border:rgba(255,255,255,.08);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-body {
+body{
+    min-height:100vh;
     background:
-        radial-gradient(circle at top, rgba(174,82,255,.12), transparent 38%),
-        var(--dark-bg);
-    color: #fff;
-    padding: 20px 12px;
-    min-height: 100vh;
+        radial-gradient(circle at top,rgba(174,82,255,.14),transparent 38%),
+        #050505;
+    color:#fff;
+    padding:20px 12px;
 }
 
-.container {
-    width: 100%;
-    max-width: 470px;
-    margin: auto;
-    background: rgba(17,17,17,.97);
-    padding: 35px 28px;
-    border-radius: 26px;
-    border: 1px solid rgba(174,82,255,.16);
-    box-shadow: 0 25px 60px rgba(0,0,0,.65);
+.container{
+    width:100%;
+    max-width:480px;
+    margin:auto;
+    padding:35px 28px;
+    background:rgba(17,17,17,.97);
+    border:1px solid rgba(174,82,255,.18);
+    border-radius:27px;
+    box-shadow:0 25px 70px rgba(0,0,0,.7);
 }
 
-.logo-img {
-    width: 135px;
-    height: auto;
-    min-height: 40px;
-    display: block;
-    margin: 0 auto 16px;
-    object-fit: contain;
+.logo-img{
+    width:140px;
+    display:block;
+    margin:0 auto 15px;
 }
 
-h2 {
-    text-align: center;
-    font-size: 25px;
-    font-weight: 800;
-    margin-bottom: 14px;
+h2{
+    text-align:center;
+    font-size:25px;
+    font-weight:800;
 }
 
-h2 span {
-    color: var(--primary);
+h2 span{
+    color:var(--purple);
 }
 
-.subtitle {
-    text-align: center;
-    color: #888;
-    font-size: 12px;
-    line-height: 1.6;
-    margin: 0 5px 28px;
+.subtitle{
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    line-height:1.6;
+    margin:12px 5px 28px;
 }
 
-h3 {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    margin-top: 30px;
-    margin-bottom: 18px;
-    font-size: 15px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-left: 3px solid var(--primary);
-    padding-left: 10px;
-    color: #fff;
+h3{
+    margin:30px 0 17px;
+    padding-left:10px;
+    border-left:3px solid var(--purple);
+    font-size:14px;
+    text-transform:uppercase;
 }
 
-.section-icon {
-    width: 20px;
-    height: 20px;
-    stroke: var(--primary);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.field{
+    margin-top:16px;
 }
 
-.field {
-    margin-top: 16px;
+.field-title{
+    color:#aaa;
+    font-size:11px;
+    margin-bottom:7px;
 }
 
-.field-title {
-    font-size: 12px;
-    color: #aaa;
-    font-weight: 500;
-    margin-bottom: 7px;
+.input-group{
+    display:flex;
+    width:100%;
+    min-height:50px;
 }
 
-.input-group {
-    display: flex;
-    width: 100%;
-    height: 50px;
+.input-icon{
+    width:50px;
+    min-width:50px;
+    min-height:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#202020;
+    border:1px solid rgba(174,82,255,.25);
+    border-right:none;
+    border-radius:13px 0 0 13px;
+    color:var(--purple);
+    font-size:18px;
 }
 
-.input-icon {
-    width: 50px;
-    min-width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #202020;
-    border: 1px solid rgba(174,82,255,.30);
-    border-right: none;
-    border-radius: 13px 0 0 13px;
-    color: var(--primary);
-    font-size: 19px;
-}
-
-.input-icon svg {
-    width: 20px;
-    height: 20px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.input-icon svg{
+    width:20px;
+    height:20px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
 }
 
 .input-group input,
-.input-group select {
-    flex: 1;
-    min-width: 0;
-    height: 50px;
-    padding: 0 15px;
-    border-radius: 0 13px 13px 0;
-    border: 1px solid var(--border);
-    background: var(--input-bg);
-    color: #fff;
-    font-size: 14px;
-    outline: none;
-    transition: .25s;
+.input-group select,
+.input-group textarea{
+    width:100%;
+    min-width:0;
+    background:var(--input);
+    color:#fff;
+    border:1px solid var(--border);
+    outline:none;
+    font-size:13px;
 }
 
-.input-group input::placeholder {
-    color: #555;
+.input-group input,
+.input-group select{
+    height:50px;
+    padding:0 14px;
+    border-radius:0 13px 13px 0;
+}
+
+.input-group textarea{
+    min-height:100px;
+    padding:14px;
+    resize:vertical;
+    border-radius:0 13px 13px 0;
 }
 
 .input-group input:focus,
-.input-group select:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(174,82,255,.08);
-    background: #202020;
+.input-group select:focus,
+.input-group textarea:focus{
+    border-color:var(--purple);
 }
 
-.input-group:focus-within .input-icon {
-    border-color: var(--primary);
-    background: rgba(174,82,255,.12);
-    box-shadow: 0 0 10px rgba(174,82,255,.12);
+input[type="date"]{
+    color-scheme:dark;
 }
 
-.input-group select {
-    cursor: pointer;
-    appearance: none;
-    background-image:
-        linear-gradient(45deg, transparent 50%, var(--primary) 50%),
-        linear-gradient(135deg, var(--primary) 50%, transparent 50%);
-    background-position:
-        calc(100% - 18px) 21px,
-        calc(100% - 13px) 21px;
-    background-size: 5px 5px;
-    background-repeat: no-repeat;
+select{
+    cursor:pointer;
 }
 
-.textarea-group {
-    display: flex;
-    width: 100%;
+.email-wrapper{
+    position:relative;
 }
 
-.textarea-group .input-icon {
-    height: 100px;
-    align-items: flex-start;
-    padding-top: 15px;
+.sugestoes-box{
+    display:none;
+    position:absolute;
+    z-index:50;
+    top:55px;
+    right:0;
+    width:calc(100% - 50px);
+    background:#202020;
+    border:1px solid rgba(174,82,255,.3);
+    border-radius:12px;
+    overflow:hidden;
 }
 
-.textarea-group textarea {
-    flex: 1;
-    min-width: 0;
-    min-height: 100px;
-    resize: vertical;
-    padding: 14px 15px;
-    border-radius: 0 13px 13px 0;
-    border: 1px solid var(--border);
-    background: var(--input-bg);
-    color: #fff;
-    font-size: 14px;
-    outline: none;
-    transition: .25s;
+.sugestoes-box div{
+    padding:12px;
+    cursor:pointer;
+    font-size:12px;
 }
 
-.textarea-group textarea::placeholder {
-    color: #555;
+.sugestoes-box div:hover{
+    background:var(--purple);
 }
 
-.textarea-group textarea:focus {
-    border-color: var(--primary);
-    background: #202020;
+.termos-area{
+    margin-top:22px;
 }
 
-.email-wrapper {
-    position: relative;
-    width: 100%;
+.checkbox-container{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#aaa;
+    font-size:11px;
+    cursor:pointer;
 }
 
-.sugestoes-box {
-    position: absolute;
-    width: calc(100% - 50px);
-    right: 0;
-    top: 55px;
-    background: #202020;
-    border: 1px solid rgba(174,82,255,.3);
-    border-radius: 12px;
-    z-index: 20;
-    display: none;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,.4);
+.checkbox-container input{
+    width:17px;
+    height:17px;
+    accent-color:var(--purple);
 }
 
-.sugestoes-box div {
-    padding: 12px 15px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: .2s;
+.termos-info{
+    margin:9px 0 0 26px;
+    padding:11px 13px;
+    border-left:2px solid var(--purple);
+    background:rgba(174,82,255,.06);
+    color:#777;
+    font-size:9.5px;
+    line-height:1.6;
+    border-radius:0 9px 9px 0;
 }
 
-.sugestoes-box div:hover {
-    background: var(--primary);
-    color: #fff;
+#btnEnviar{
+    width:100%;
+    margin-top:28px;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+    color:#fff;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 8px 30px rgba(174,82,255,.22);
+    transition:.25s;
 }
 
-.termos-area {
-    margin-top: 23px;
+#btnEnviar:hover{
+    transform:translateY(-2px);
 }
 
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 12px;
-    color: #aaa;
-    cursor: pointer;
+#btnEnviar:disabled{
+    opacity:.7;
+    cursor:wait;
 }
 
-.checkbox-container input {
-    width: 17px;
-    height: 17px;
-    margin: 0;
-    accent-color: var(--primary);
-    cursor: pointer;
+.footer{
+    text-align:center;
+    color:#555;
+    font-size:10px;
+    margin-top:20px;
 }
 
-.termos-info {
-    margin-top: 9px;
-    margin-left: 27px;
-    padding: 12px 14px;
-    background: rgba(174,82,255,.06);
-    border-left: 2px solid var(--primary);
-    border-radius: 0 10px 10px 0;
-    color: #777;
-    font-size: 10.5px;
-    line-height: 1.65;
+
+/* =====================================================
+   SELETOR DO APARELHO
+===================================================== */
+
+.device-selector{
+    width:100%;
+    height:50px;
+    padding:5px 10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--input);
+    border:1px solid var(--border);
+    border-radius:0 13px 13px 0;
+    color:#fff;
+    cursor:pointer;
+    text-align:left;
 }
 
-.termos-info::before {
-    content: "ⓘ";
-    color: var(--primary);
-    font-weight: 700;
-    margin-right: 5px;
+.device-selector:hover{
+    border-color:var(--purple);
+    background:#202020;
 }
 
-button {
-    width: 100%;
-    padding: 16px;
-    margin-top: 30px;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: #fff;
-    font-size: 15px;
-    font-weight: 800;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 8px 25px var(--purple-glow);
-    transition: .25s;
+.device-selector img{
+    width:39px;
+    height:39px;
+    object-fit:contain;
+    border-radius:7px;
+    background:#080808;
 }
 
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(174,82,255,.4);
+.selector-content{
+    flex:1;
+    min-width:0;
 }
 
-button:disabled {
-    cursor: wait;
-    opacity: .8;
-    transform: none;
+.selector-name{
+    font-size:11px;
+    font-weight:700;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.footer {
-    text-align: center;
-    margin-top: 22px;
-    color: #555;
-    font-size: 11px;
+.selector-storage{
+    color:#777;
+    font-size:8px;
 }
 
-/* ================================
-   TELA DE ENVIO
-================================ */
-
-.overlay-envio {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(0,0,0,.88);
-    backdrop-filter: blur(10px);
+.selector-arrow{
+    color:var(--purple);
+    font-size:19px;
 }
 
-.overlay-envio.ativo {
-    display: flex;
-    animation: aparecer .35s ease;
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.device-modal{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    background:rgba(0,0,0,.88);
+    backdrop-filter:blur(15px);
 }
 
-.caixa-envio {
-    width: 100%;
-    max-width: 390px;
-    padding: 40px 28px;
-    text-align: center;
-    background: #111;
-    border: 1px solid rgba(174,82,255,.35);
-    border-radius: 26px;
+.device-modal.active{
+    display:flex;
+}
+
+.device-panel{
+    width:100%;
+    max-width:850px;
+    max-height:90vh;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at top,rgba(174,82,255,.11),transparent 40%),
+        #101010;
+    border:1px solid rgba(174,82,255,.3);
+    border-radius:27px;
     box-shadow:
-        0 25px 80px rgba(0,0,0,.8),
-        0 0 40px rgba(174,82,255,.12);
-    animation: subir .45s ease;
+        0 30px 100px rgba(0,0,0,.9),
+        0 0 50px rgba(174,82,255,.12);
 }
 
-.icone-envio {
-    width: 78px;
-    height: 78px;
-    margin: 0 auto 22px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(174,82,255,.12);
-    border: 2px solid rgba(174,82,255,.45);
+.device-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:21px;
+    border-bottom:1px solid rgba(255,255,255,.07);
 }
 
-.icone-envio svg {
-    width: 38px;
-    height: 38px;
-    stroke: var(--primary);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    animation: pulsar 1.5s infinite;
+.device-header h4{
+    font-size:18px;
 }
 
-.caixa-envio h4 {
-    font-size: 21px;
-    margin-bottom: 10px;
-    font-weight: 800;
+.device-header p{
+    margin-top:3px;
+    color:#777;
+    font-size:10px;
 }
 
-.caixa-envio p {
-    color: #888;
-    font-size: 12px;
-    line-height: 1.6;
+.close-device{
+    width:38px;
+    height:38px;
+    padding:0;
+    margin:0;
+    border:none;
+    border-radius:50%;
+    background:#202020;
+    color:#fff;
+    font-size:24px;
+    cursor:pointer;
 }
 
-.barra {
-    width: 100%;
-    height: 4px;
-    margin-top: 25px;
-    background: #222;
-    border-radius: 10px;
-    overflow: hidden;
+.close-device:hover{
+    background:#292929;
 }
 
-.barra::after {
-    content: "";
-    display: block;
-    width: 35%;
-    height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(90deg, var(--primary-dark), var(--primary));
-    animation: carregar 1.5s infinite ease-in-out;
+.device-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:13px;
+    padding:18px;
+    overflow-y:auto;
+    max-height:calc(90vh - 90px);
 }
 
-@keyframes carregar {
-    0% {
-        transform: translateX(-120%);
-    }
-    100% {
-        transform: translateX(390%);
+.category-label{
+    grid-column:1/-1;
+    padding:3px 2px;
+    color:var(--purple);
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+}
+
+.device-card{
+    min-height:190px;
+    padding:12px 8px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:18px;
+    background:linear-gradient(145deg,#171717,#0c0c0c);
+    color:#fff;
+    cursor:pointer;
+    text-align:center;
+    transition:.25s;
+}
+
+.device-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--purple);
+    box-shadow:0 12px 30px rgba(174,82,255,.18);
+}
+
+.device-card img{
+    width:110px;
+    height:115px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 7px;
+}
+
+.device-card.game img{
+    width:135px;
+}
+
+.device-card h5{
+    font-size:11px;
+    font-weight:700;
+}
+
+.device-card span{
+    display:block;
+    margin-top:4px;
+    color:#777;
+    font-size:9px;
+}
+
+
+/* =====================================================
+   ENVIO
+===================================================== */
+
+.overlay-envio{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.88);
+    backdrop-filter:blur(10px);
+}
+
+.overlay-envio.ativo{
+    display:flex;
+}
+
+.caixa-envio{
+    width:90%;
+    max-width:390px;
+    padding:40px 28px;
+    text-align:center;
+    background:#111;
+    border:1px solid rgba(174,82,255,.35);
+    border-radius:26px;
+    box-shadow:0 25px 80px rgba(0,0,0,.8);
+}
+
+.icone-envio{
+    width:75px;
+    height:75px;
+    margin:0 auto 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:rgba(174,82,255,.12);
+    border:2px solid rgba(174,82,255,.4);
+    color:var(--purple);
+    font-size:32px;
+}
+
+.caixa-envio h4{
+    font-size:20px;
+    margin-bottom:9px;
+}
+
+.caixa-envio p{
+    color:#888;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.barra{
+    width:100%;
+    height:4px;
+    margin-top:25px;
+    overflow:hidden;
+    background:#222;
+    border-radius:10px;
+}
+
+.barra:after{
+    content:"";
+    display:block;
+    width:35%;
+    height:100%;
+    background:var(--purple);
+    animation:carregar 1.5s infinite;
+}
+
+@keyframes carregar{
+    from{transform:translateX(-120%);}
+    to{transform:translateX(390%);}
+}
+
+@media(max-width:700px){
+
+    .device-grid{
+        grid-template-columns:repeat(3,1fr);
     }
 }
 
-@keyframes pulsar {
-    0%, 100% {
-        transform: scale(1);
-        opacity: .7;
-    }
-    50% {
-        transform: scale(1.12);
-        opacity: 1;
-    }
-}
+@media(max-width:480px){
 
-@keyframes aparecer {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes subir {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(.96);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@media (max-width: 480px) {
-
-    body {
-        padding: 10px;
+    .container{
+        padding:28px 18px;
     }
 
-    .container {
-        padding: 28px 18px;
-        border-radius: 22px;
+    .device-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:9px;
+        padding:12px;
     }
 
-    h2 {
-        font-size: 23px;
+    .device-card{
+        min-height:175px;
     }
 
-    .input-icon {
-        width: 48px;
-        min-width: 48px;
+    .device-card img{
+        width:90px;
+        height:100px;
     }
 
-    .input-group input,
-    .input-group select {
-        font-size: 13px;
-    }
-
-    .termos-info {
-        font-size: 10px;
-        margin-left: 27px;
-    }
-
-    .subtitle {
-        font-size: 11.5px;
-        margin-left: 2px;
-        margin-right: 2px;
+    .device-card.game img{
+        width:110px;
     }
 }
 </style>
-
 </head>
 
 <body>
@@ -500,11 +552,10 @@ button:disabled {
 <div class="container">
 
 <img
-id="logoVersus"
-src="https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png"
-alt="Versus Tecnologia"
-class="logo-img"
-
+    id="logoVersus"
+    class="logo-img"
+    src="https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png"
+    alt="Versus Tecnologia"
 >
 
 <h2>
@@ -512,253 +563,354 @@ class="logo-img"
 </h2>
 
 <p class="subtitle">
-    Uma experiência de compra personalizada começa aqui. Preencha seus dados para iniciarmos sua análise.
+    Preencha seus dados para iniciar sua análise e prosseguir com sua compra.
 </p>
 
-<h3>
-<svg class="section-icon" viewBox="0 0 24 24">
-    <circle cx="12" cy="7" r="4"/>
-    <path d="M5 21c0-4 3-7 7-7s7 3 7 7"/>
-</svg>
-Dados Pessoais
-</h3>
+
+<!-- =====================================================
+     DADOS PESSOAIS
+===================================================== -->
+
+<h3>Dados Pessoais</h3>
 
 <div class="field">
+
 <div class="field-title">Nome completo</div>
 
 <div class="input-group">
+
 <div class="input-icon">
 <svg viewBox="0 0 24 24">
-    <circle cx="12" cy="8" r="4"/>
-    <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
+<circle cx="12" cy="8" r="4"/>
+<path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
 </svg>
 </div>
 
-<input id="nome" placeholder="Digite seu nome completo">
+<input
+    id="nome"
+    placeholder="Digite seu nome completo"
+>
+
 </div>
 </div>
 
+
 <div class="field">
+
 <div class="field-title">CPF</div>
 
 <div class="input-group">
+
 <div class="input-icon">
 <svg viewBox="0 0 24 24">
-    <rect x="3" y="5" width="18" height="14" rx="2"/>
-    <circle cx="8" cy="12" r="2"/>
-    <path d="M13 10h5M13 14h5"/>
+<rect x="3" y="5" width="18" height="14" rx="2"/>
+<circle cx="8" cy="12" r="2"/>
+<path d="M13 10h5M13 14h5"/>
 </svg>
 </div>
 
-<input id="cpf" placeholder="000.000.000-00">
+<input
+    id="cpf"
+    placeholder="000.000.000-00"
+>
+
 </div>
 </div>
 
+
 <div class="field">
+
 <div class="field-title">Data de nascimento</div>
 
 <div class="input-group">
+
 <div class="input-icon">
-<svg viewBox="0 0 24 24">
-    <rect x="3" y="4" width="18" height="18" rx="2"/>
-    <path d="M16 2v4M8 2v4M3 10h18"/>
-</svg>
+📅
 </div>
 
-<input type="date" id="nascimento">
+<input
+    type="date"
+    id="nascimento"
+>
+
 </div>
 </div>
+
 
 <div class="field">
+
 <div class="field-title">E-mail</div>
 
 <div class="email-wrapper">
+
 <div class="input-group">
 
 <div class="input-icon">
-<svg viewBox="0 0 24 24">
-    <rect x="3" y="5" width="18" height="14" rx="2"/>
-    <path d="m3 7 9 6 9-6"/>
-</svg>
+✉
 </div>
 
-<input id="email" autocomplete="off" placeholder="seuemail@exemplo.com">
+<input
+    id="email"
+    autocomplete="off"
+    placeholder="seuemail@exemplo.com"
+>
 
 </div>
 
-<div id="sugestoesEmail" class="sugestoes-box"></div>
+<div
+    id="sugestoesEmail"
+    class="sugestoes-box"
+></div>
+
 </div>
 </div>
+
 
 <div class="field">
+
 <div class="field-title">Telefone (WhatsApp)</div>
 
 <div class="input-group">
 
 <div class="input-icon">
-<svg viewBox="0 0 24 24">
-    <path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L9 10.9a16 16 0 0 0 4.1 4.1l1.2-1.2a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2.9z"/>
-</svg>
+☎
 </div>
 
-<input id="telefone" placeholder="(00) 00000-0000">
+<input
+    id="telefone"
+    placeholder="(00) 00000-0000"
+>
 
 </div>
 </div>
 
-<h3>
-<svg class="section-icon" viewBox="0 0 24 24">
-    <path d="M6 2h12v20H6z"/>
-    <path d="M9 6h6M9 10h6M9 14h6"/>
-</svg>
-Compra
-</h3>
+
+<!-- =====================================================
+     COMPRA
+===================================================== -->
+
+<h3>Compra</h3>
+
 
 <div class="field">
-<div class="field-title">Aparelhos com disponibilidade</div>
+
+<div class="field-title">
+Aparelhos com disponibilidade
+</div>
 
 <div class="input-group">
 
 <div class="input-icon">
-<svg viewBox="0 0 24 24">
-    <rect x="7" y="2" width="10" height="20" rx="2"/>
-    <path d="M10 18h4"/>
-</svg>
+📱
 </div>
 
-<select id="aparelho">
-<option value="">Selecione um aparelho</option>
-<option>13 Normal 256GB</option>
-<option>13 Pro Max 256GB</option>
-<option>14 Normal 256GB</option>
-<option>14 Pro 256GB</option>
-<option>14 Pro Max 256GB</option>
-<option>15 Normal 256GB</option>
-<option>15 Plus 256GB</option>
-<option>15 Pro 256GB</option>
-<option>15 Pro Max 256GB</option>
-<option>16 Normal 256GB</option>
-<option>16 Pro 256GB</option>
-<option>16 Pro Max 256GB</option>
-<option>17 Normal 256GB</option>
-<option>17 Air 256GB</option>
-<option>17 Pro 256GB</option>
-<option>17 Pro Max 256GB</option>
-<option>PlayStation 5 Slim 1TB</option>
-<option>Xbox Series X</option>
-</select>
+<button
+    type="button"
+    id="deviceSelector"
+    class="device-selector"
+>
+
+<div class="selector-content">
+
+<div class="selector-name">
+Selecione um aparelho
+</div>
+
+<div class="selector-storage">
+iPhones e videogames
+</div>
 
 </div>
+
+<div class="selector-arrow">
+›
 </div>
+
+</button>
+
+</div>
+
+<input
+    type="hidden"
+    id="aparelho"
+    value=""
+>
+
+</div>
+
 
 <div class="field">
-<div class="field-title">Dia de vencimento das parcelas</div>
+
+<div class="field-title">
+Dia de vencimento das parcelas
+</div>
 
 <div class="input-group">
 
 <div class="input-icon">
-<svg viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="9"/>
-    <path d="M12 7v5l3 2"/>
-</svg>
+📅
 </div>
 
 <select id="vencimento">
-<option value="">Selecione o dia</option>
+
+<option value="">
+Selecione o dia
+</option>
+
 <option>Dia 5</option>
 <option>Dia 10</option>
 <option>Dia 15</option>
 <option>Dia 20</option>
 <option>Dia 25</option>
 <option>Dia 30</option>
+
 </select>
 
 </div>
 </div>
 
-<h3>
-<svg class="section-icon" viewBox="0 0 24 24">
-    <path d="M3 10l9-7 9 7"/>
-    <path d="M5 9v11h14V9"/>
-    <path d="M9 20v-6h6v6"/>
-</svg>
-Endereço
-</h3>
+
+<!-- =====================================================
+     ENDEREÇO
+===================================================== -->
+
+<h3>Endereço</h3>
+
 
 <div class="field">
+
 <div class="field-title">CEP</div>
 
 <div class="input-group">
+
 <div class="input-icon">📍</div>
-<input id="cep" onblur="buscarCEP()" placeholder="00000-000">
+
+<input
+    id="cep"
+    onblur="buscarCEP()"
+    placeholder="00000-000"
+>
+
 </div>
 </div>
 
+
 <div class="field">
+
 <div class="field-title">Rua</div>
 
 <div class="input-group">
-<div class="input-icon">🛣️</div>
-<input id="rua" placeholder="Rua / Avenida">
+
+<div class="input-icon">🏠</div>
+
+<input
+    id="rua"
+    placeholder="Rua / Avenida"
+>
+
 </div>
 </div>
 
+
 <div class="field">
+
 <div class="field-title">Número</div>
 
 <div class="input-group">
-<div class="input-icon">🔢</div>
-<input id="numero" placeholder="Nº">
+
+<div class="input-icon">#</div>
+
+<input
+    id="numero"
+    placeholder="Número"
+>
+
 </div>
 </div>
 
+
 <div class="field">
+
 <div class="field-title">Bairro</div>
 
 <div class="input-group">
-<div class="input-icon">🏘️</div>
-<input id="bairro" placeholder="Bairro">
+
+<div class="input-icon">⌂</div>
+
+<input
+    id="bairro"
+    placeholder="Bairro"
+>
+
 </div>
 </div>
 
+
 <div class="field">
+
 <div class="field-title">Cidade</div>
 
 <div class="input-group">
-<div class="input-icon">🏙️</div>
-<input id="cidade" placeholder="Cidade">
+
+<div class="input-icon">🏙</div>
+
+<input
+    id="cidade"
+    placeholder="Cidade"
+>
+
 </div>
 </div>
 
+
 <div class="field">
+
 <div class="field-title">Estado</div>
 
 <div class="input-group">
+
 <div class="input-icon">🇧🇷</div>
-<input id="estado" placeholder="UF">
+
+<input
+    id="estado"
+    placeholder="UF"
+>
+
 </div>
 </div>
+
 
 <div class="field">
-<div class="field-title">Observações para entrega</div>
 
-<div class="textarea-group">
+<div class="field-title">
+Observações para entrega
+</div>
+
+<div class="input-group">
 
 <div class="input-icon">📝</div>
 
 <textarea
     id="observacao"
-    placeholder="Ex: Apartamento, bloco, referências..."
+    placeholder="Apartamento, bloco, referência..."
 ></textarea>
 
 </div>
 </div>
 
+
+<!-- =====================================================
+     TERMOS
+===================================================== -->
+
 <div class="termos-area">
 
 <label class="checkbox-container">
 
-<input type="checkbox" id="termos">
+<input
+    type="checkbox"
+    id="termos"
+>
 
 <span>
 Li e aceito os termos de compra
@@ -767,14 +919,21 @@ Li e aceito os termos de compra
 </label>
 
 <div class="termos-info">
+
 Ao marcar esta opção, declaro estar ciente e de acordo com o encaminhamento dos dados fornecidos para análise cadastral e avaliação das condições necessárias à aprovação da compra.
-</div>
 
 </div>
 
-<button id="btnEnviar" onclick="enviar()">
-Finalizar Cadastro
+</div>
+
+
+<button
+    id="btnEnviar"
+    onclick="enviar()"
+>
+FINALIZAR CADASTRO
 </button>
+
 
 <div class="footer">
 🔒 Seus dados são protegidos durante o envio.
@@ -782,20 +941,72 @@ Finalizar Cadastro
 
 </div>
 
-<!-- TELA DE ANIMAÇÃO APÓS ENVIO -->
 
-<div id="overlayEnvio" class="overlay-envio">
+<!-- =====================================================
+     MODAL DOS APARELHOS
+===================================================== -->
+
+<div
+    id="deviceModal"
+    class="device-modal"
+    aria-hidden="true"
+>
+
+<div class="device-panel">
+
+<div class="device-header">
+
+<div>
+
+<h4>
+Escolha seu aparelho
+</h4>
+
+<p>
+Selecione o modelo desejado
+</p>
+
+</div>
+
+<button
+    type="button"
+    id="closeDevice"
+    class="close-device"
+>
+×
+</button>
+
+</div>
+
+
+<div
+    id="deviceGrid"
+    class="device-grid"
+></div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     ENVIO
+===================================================== -->
+
+<div
+    id="overlayEnvio"
+    class="overlay-envio"
+>
 
 <div class="caixa-envio">
 
 <div class="icone-envio">
-<svg viewBox="0 0 24 24">
-    <path d="M22 2L11 13"/>
-    <path d="M22 2l-7 20-4-9-9-4z"/>
-</svg>
+✓
 </div>
 
-<h4>Cadastro enviado!</h4>
+<h4>
+Cadastro enviado!
+</h4>
 
 <p>
 Sua ficha foi preparada com sucesso.<br>
@@ -808,229 +1019,677 @@ Estamos direcionando você para o WhatsApp...
 
 </div>
 
+
 <script>
 
-/* ==========================================================
-   PROTEÇÃO / RECARREGAMENTO AUTOMÁTICO DO LOGO
-========================================================== */
+/* =====================================================
+   PRODUTOS
+   MESMAS IMAGENS DO CATÁLOGO
+===================================================== */
 
-const logo = document.getElementById("logoVersus");
+const produtos = [
 
-const logoOriginal =
-    "https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png";
+    /* ================= IPHONES ================= */
 
-let tentativasLogo = 0;
+    {
+        categoria:"iPhones",
+        nome:"14 Normal",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/k65j17V6/i-Phone-14-Azul.png"
+    },
 
-logo.addEventListener("error", function() {
+    {
+        categoria:"iPhones",
+        nome:"14 Pro",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/sS9N6Tt/i-Phone-14-Pro-Max-Deep-Purple.png"
+    },
 
-    if (tentativasLogo >= 4) return;
+    {
+        categoria:"iPhones",
+        nome:"14 Pro Max",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/sS9N6Tt/i-Phone-14-Pro-Max-Deep-Purple.png"
+    },
 
-    tentativasLogo++;
+    {
+        categoria:"iPhones",
+        nome:"15 Normal",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/PGTf8vpk/i-Phone-15-Rosa.png"
+    },
 
-    setTimeout(() => {
+    {
+        categoria:"iPhones",
+        nome:"15 Plus",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/PGTf8vpk/i-Phone-15-Rosa.png"
+    },
 
-        const separador = logoOriginal.includes("?") ? "&" : "?";
+    {
+        categoria:"iPhones",
+        nome:"15 Pro",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/Q3rtkTPN/i-Phone-15-Pro-Max-Titanio-Natural.png"
+    },
 
-        logo.src =
-            logoOriginal +
-            separador +
-            "reload=" +
-            Date.now();
+    {
+        categoria:"iPhones",
+        nome:"15 Pro Max",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/Q3rtkTPN/i-Phone-15-Pro-Max-Titanio-Natural.png"
+    },
 
-    }, 700 * tentativasLogo);
+    {
+        categoria:"iPhones",
+        nome:"16 Normal",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/nNzNR4cP/i-Phone-16-Azul.png"
+    },
 
-});
+    {
+        categoria:"iPhones",
+        nome:"16 Pro",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/215Zwy74/i-Phone-16-Pro-Titanio-Branco.png"
+    },
 
-/* ==========================================================
-   CPF
-========================================================== */
+    {
+        categoria:"iPhones",
+        nome:"16 Pro Max",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/215Zwy74/i-Phone-16-Pro-Titanio-Branco.png"
+    },
 
-document.getElementById("cpf").addEventListener("input", function(e) {
+    {
+        categoria:"iPhones",
+        nome:"17 Normal",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/gLpVDN1F/i-Phone-17-Lavanda.png"
+    },
 
-    let v = e.target.value.replace(/\D/g, "");
+    {
+        categoria:"iPhones",
+        nome:"17 Air",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/F4XD2fdp/i-Phone-17-Air-Branco.png"
+    },
 
-    if (v.length > 11)
-        v = v.slice(0, 11);
+    {
+        categoria:"iPhones",
+        nome:"17 Pro",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/JRmSkVV0/i-Phone-17-Pro-Silver.png"
+    },
 
-    v = v.replace(/(\d{3})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d)/, "$1.$2");
-    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    {
+        categoria:"iPhones",
+        nome:"17 Pro Max",
+        storage:"256GB",
+        imagem:"https://i.ibb.co/JRmSkVV0/i-Phone-17-Pro-Silver.png"
+    },
 
-    e.target.value = v;
 
-});
+    /* ================= VIDEOGAMES ================= */
 
-/* ==========================================================
-   TELEFONE
-========================================================== */
+    {
+        categoria:"Videogames",
+        nome:"PlayStation 5 Slim",
+        storage:"1TB",
+        imagem:"https://i.ibb.co/jks6Bb64/pngtree-top-quality-playstation-5-console-isolated-png-image-15514648.png",
+        game:true
+    },
 
-document.getElementById("telefone").addEventListener("input", function(e) {
-
-    let v = e.target.value.replace(/\D/g, "");
-
-    if (v.length > 11)
-        v = v.slice(0, 11);
-
-    if (v.length > 10) {
-
-        v = v.replace(
-            /^(\d{2})(\d{5})(\d{4})$/,
-            "($1) $2-$3"
-        );
-
-    } else if (v.length > 6) {
-
-        v = v.replace(
-            /^(\d{2})(\d{4})(\d{0,4})$/,
-            "($1) $2-$3"
-        );
-
-    } else if (v.length > 2) {
-
-        v = v.replace(
-            /^(\d{2})(\d{0,5})$/,
-            "($1) $2"
-        );
-
+    {
+        categoria:"Videogames",
+        nome:"Xbox Series X",
+        storage:"",
+        imagem:"https://i.ibb.co/zVBgBddj/XBOX.png",
+        game:true
     }
 
-    e.target.value = v;
+];
 
-});
 
-/* ==========================================================
-   E-MAIL
-========================================================== */
+/* =====================================================
+   ELEMENTOS
+===================================================== */
 
-let emailInput = document.getElementById("email");
-let box = document.getElementById("sugestoesEmail");
+const modal =
+    document.getElementById("deviceModal");
 
-let dominios = [
+const grid =
+    document.getElementById("deviceGrid");
+
+const selector =
+    document.getElementById("deviceSelector");
+
+const aparelho =
+    document.getElementById("aparelho");
+
+
+/* =====================================================
+   RENDERIZA PRODUTOS
+===================================================== */
+
+function renderProdutos(){
+
+    grid.innerHTML = "";
+
+    let categoriaAtual = "";
+
+    produtos.forEach(produto => {
+
+        if(produto.categoria !== categoriaAtual){
+
+            categoriaAtual = produto.categoria;
+
+            const categoria =
+                document.createElement("div");
+
+            categoria.className =
+                "category-label";
+
+            categoria.innerText =
+                categoriaAtual;
+
+            grid.appendChild(categoria);
+        }
+
+
+        const card =
+            document.createElement("button");
+
+        card.type = "button";
+
+        card.className =
+            "device-card" +
+            (produto.game ? " game" : "");
+
+
+        /*
+         * IMPORTANTE:
+         * A imagem é usada diretamente da URL
+         * do catálogo.
+         */
+
+        card.innerHTML = `
+
+            <img
+                src="${produto.imagem}"
+                alt="${produto.nome}"
+                loading="lazy"
+            >
+
+            <h5>
+                ${produto.nome}
+            </h5>
+
+            <span>
+                ${produto.storage || "Console"}
+            </span>
+
+        `;
+
+
+        card.onclick = function(){
+
+            selecionarProduto(produto);
+
+        };
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   SELECIONAR PRODUTO
+===================================================== */
+
+function selecionarProduto(produto){
+
+    const valor =
+        produto.storage
+        ?
+        produto.nome + " " + produto.storage
+        :
+        produto.nome;
+
+
+    aparelho.value = valor;
+
+
+    selector.innerHTML = `
+
+        <img
+            src="${produto.imagem}"
+            alt="${produto.nome}"
+        >
+
+        <div class="selector-content">
+
+            <div class="selector-name">
+                ${produto.nome}
+            </div>
+
+            <div class="selector-storage">
+                ${produto.storage || "Console"} • selecionado
+            </div>
+
+        </div>
+
+        <div class="selector-arrow">
+            ✓
+        </div>
+
+    `;
+
+
+    fecharModal();
+
+}
+
+
+/* =====================================================
+   ABRIR / FECHAR MODAL
+===================================================== */
+
+function abrirModal(){
+
+    modal.classList.add("active");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+function fecharModal(){
+
+    modal.classList.remove("active");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+}
+
+
+selector.addEventListener(
+    "click",
+    abrirModal
+);
+
+
+document
+    .getElementById("closeDevice")
+    .addEventListener(
+        "click",
+        fecharModal
+    );
+
+
+modal.addEventListener(
+    "click",
+    function(e){
+
+        if(e.target === modal){
+
+            fecharModal();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            e.key === "Escape" &&
+            modal.classList.contains("active")
+        ){
+
+            fecharModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INICIA GALERIA
+===================================================== */
+
+renderProdutos();
+
+
+/* =====================================================
+   CPF
+===================================================== */
+
+document
+    .getElementById("cpf")
+    .addEventListener(
+        "input",
+        function(e){
+
+            let v =
+                e.target.value.replace(/\D/g,"");
+
+            v = v.substring(0,11);
+
+            v = v.replace(
+                /(\d{3})(\d)/,
+                "$1.$2"
+            );
+
+            v = v.replace(
+                /(\d{3})(\d)/,
+                "$1.$2"
+            );
+
+            v = v.replace(
+                /(\d{3})(\d{1,2})$/,
+                "$1-$2"
+            );
+
+            e.target.value = v;
+
+        }
+    );
+
+
+/* =====================================================
+   TELEFONE
+===================================================== */
+
+document
+    .getElementById("telefone")
+    .addEventListener(
+        "input",
+        function(e){
+
+            let v =
+                e.target.value.replace(/\D/g,"");
+
+            v = v.substring(0,11);
+
+            if(v.length >= 11){
+
+                v = v.replace(
+                    /^(\d{2})(\d{5})(\d{4})$/,
+                    "($1) $2-$3"
+                );
+
+            }else if(v.length >= 7){
+
+                v = v.replace(
+                    /^(\d{2})(\d{4})(\d+)/,
+                    "($1) $2-$3"
+                );
+
+            }else if(v.length >= 3){
+
+                v = v.replace(
+                    /^(\d{2})(\d+)/,
+                    "($1) $2"
+                );
+
+            }
+
+            e.target.value = v;
+
+        }
+    );
+
+
+/* =====================================================
+   EMAIL
+===================================================== */
+
+const email =
+    document.getElementById("email");
+
+const sugestoes =
+    document.getElementById("sugestoesEmail");
+
+const dominios = [
     "@gmail.com",
     "@hotmail.com",
     "@outlook.com"
 ];
 
-emailInput.addEventListener("input", function() {
 
-    let valor = emailInput.value;
+email.addEventListener(
+    "input",
+    function(){
 
-    if (valor.includes("@") || valor.length < 2) {
+        const valor =
+            email.value;
 
-        box.style.display = "none";
-        return;
+        if(
+            valor.includes("@") ||
+            valor.length < 2
+        ){
 
-    }
+            sugestoes.style.display =
+                "none";
 
-    box.innerHTML = "";
+            return;
+        }
 
-    dominios.forEach(d => {
 
-        let item = document.createElement("div");
+        sugestoes.innerHTML = "";
 
-        item.innerText = valor + d;
 
-        item.onclick = () => {
+        dominios.forEach(dominio => {
 
-            emailInput.value = valor + d;
-            box.style.display = "none";
+            const item =
+                document.createElement("div");
 
-        };
+            item.innerText =
+                valor + dominio;
 
-        box.appendChild(item);
 
-    });
+            item.onclick = function(){
 
-    box.style.display = "block";
+                email.value =
+                    valor + dominio;
 
-});
+                sugestoes.style.display =
+                    "none";
 
-/* ==========================================================
-   CEP
-========================================================== */
+            };
 
-function buscarCEP() {
 
-    let cep = document
-        .getElementById("cep")
-        .value
-        .replace(/\D/g, "");
-
-    if (cep.length === 8) {
-
-        fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(r => r.json())
-        .then(d => {
-
-            if (d.erro) {
-                alert("CEP não encontrado.");
-                return;
-            }
-
-            document.getElementById("rua").value =
-                d.logradouro || "";
-
-            document.getElementById("bairro").value =
-                d.bairro || "";
-
-            document.getElementById("cidade").value =
-                d.localidade || "";
-
-            document.getElementById("estado").value =
-                d.uf || "";
-
-        })
-        .catch(() => {
-
-            alert("Não foi possível consultar o CEP.");
+            sugestoes.appendChild(item);
 
         });
 
+
+        sugestoes.style.display =
+            "block";
+
     }
+);
+
+
+/* =====================================================
+   CEP
+===================================================== */
+
+function buscarCEP(){
+
+    let cep =
+        document
+        .getElementById("cep")
+        .value
+        .replace(/\D/g,"");
+
+
+    if(cep.length !== 8)
+        return;
+
+
+    fetch(
+        "https://viacep.com.br/ws/" +
+        cep +
+        "/json/"
+    )
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        if(data.erro){
+
+            alert(
+                "CEP não encontrado."
+            );
+
+            return;
+        }
+
+
+        document.getElementById("rua").value =
+            data.logradouro || "";
+
+        document.getElementById("bairro").value =
+            data.bairro || "";
+
+        document.getElementById("cidade").value =
+            data.localidade || "";
+
+        document.getElementById("estado").value =
+            data.uf || "";
+
+    })
+
+    .catch(() => {
+
+        alert(
+            "Não foi possível consultar o CEP."
+        );
+
+    });
 
 }
 
-/* ==========================================================
-   ENVIO
-========================================================== */
 
-function enviar() {
+/* =====================================================
+   ENVIAR PARA WHATSAPP
+===================================================== */
 
-    let nome = document.getElementById("nome").value.trim();
-    let cpf = document.getElementById("cpf").value.trim();
-    let nasc = document.getElementById("nascimento").value;
-    let email = document.getElementById("email").value.trim();
-    let tel = document.getElementById("telefone").value.trim();
-    let aparelho = document.getElementById("aparelho").value;
-    let venc = document.getElementById("vencimento").value;
-    let rua = document.getElementById("rua").value.trim();
-    let num = document.getElementById("numero").value.trim();
-    let bairro = document.getElementById("bairro").value.trim();
-    let cid = document.getElementById("cidade").value.trim();
-    let est = document.getElementById("estado").value.trim();
-    let obs = document.getElementById("observacao").value.trim();
-    let termos = document.getElementById("termos").checked;
+function enviar(){
 
-    if (!nome || !cpf || !tel || !aparelho || !termos) {
+    const nome =
+        document.getElementById("nome")
+        .value.trim();
+
+    const cpf =
+        document.getElementById("cpf")
+        .value.trim();
+
+    const nasc =
+        document.getElementById("nascimento")
+        .value;
+
+    const email =
+        document.getElementById("email")
+        .value.trim();
+
+    const tel =
+        document.getElementById("telefone")
+        .value.trim();
+
+    const aparelhoSelecionado =
+        document.getElementById("aparelho")
+        .value;
+
+    const venc =
+        document.getElementById("vencimento")
+        .value;
+
+    const rua =
+        document.getElementById("rua")
+        .value.trim();
+
+    const num =
+        document.getElementById("numero")
+        .value.trim();
+
+    const bairro =
+        document.getElementById("bairro")
+        .value.trim();
+
+    const cidade =
+        document.getElementById("cidade")
+        .value.trim();
+
+    const estado =
+        document.getElementById("estado")
+        .value.trim();
+
+    const observacao =
+        document.getElementById("observacao")
+        .value.trim();
+
+    const termos =
+        document.getElementById("termos")
+        .checked;
+
+
+    if(
+        !nome ||
+        !cpf ||
+        !tel ||
+        !aparelhoSelecionado ||
+        !termos
+    ){
 
         alert(
-            "Por favor, preencha os campos obrigatórios e aceite os termos."
+            "Preencha os campos obrigatórios e aceite os termos."
         );
 
         return;
-
     }
 
-    let btn = document.getElementById("btnEnviar");
-    let overlay = document.getElementById("overlayEnvio");
+
+    const btn =
+        document.getElementById("btnEnviar");
+
+    const overlay =
+        document.getElementById("overlayEnvio");
+
 
     btn.disabled = true;
-    btn.innerText = "PROCESSANDO...";
 
-    let msg =
+    btn.innerText =
+        "PROCESSANDO...";
+
+
+    const mensagem =
+
 `*NOVO PEDIDO - VERSUS TECNOLOGIA*
 -------------------------
+
 *DADOS DO CLIENTE*
+
 Nome: ${nome}
 CPF: ${cpf}
 Nascimento: ${nasc}
@@ -1038,31 +1697,34 @@ E-mail: ${email}
 Telefone: ${tel}
 
 *PEDIDO*
-Aparelho: ${aparelho}
+
+Aparelho: ${aparelhoSelecionado}
 Vencimento: ${venc}
 
 *ENDEREÇO DE ENTREGA*
+
 Rua: ${rua}, ${num}
 Bairro: ${bairro}
-Cidade: ${cid} - ${est}
-Obs: ${obs}
+Cidade: ${cidade} - ${estado}
+Obs: ${observacao}
 
 *CONSENTIMENTO*
+
 Cliente declarou estar ciente e de acordo com o encaminhamento dos dados fornecidos para análise cadastral e avaliação das condições necessárias à aprovação da compra.
 
 -------------------------`;
 
-    /* Mostra a animação antes de abrir o WhatsApp */
 
     overlay.classList.add("ativo");
 
-    setTimeout(() => {
+
+    setTimeout(function(){
 
         window.location.href =
             "https://wa.me/5511948559200?text=" +
-            encodeURIComponent(msg);
+            encodeURIComponent(mensagem);
 
-    }, 1800);
+    },1800);
 
 }
 
