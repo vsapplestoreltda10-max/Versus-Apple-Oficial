@@ -435,6 +435,30 @@ select{
 
 
 /* =====================================================
+   ERRO DE IMAGEM
+===================================================== */
+
+.device-card.image-error{
+    border-color:rgba(255,80,80,.25);
+}
+
+.device-card.image-error img{
+    opacity:.25;
+}
+
+.image-error-text{
+    display:none;
+    color:#777;
+    font-size:8px;
+    margin-bottom:5px;
+}
+
+.device-card.image-error .image-error-text{
+    display:block;
+}
+
+
+/* =====================================================
    ENVIO
 ===================================================== */
 
@@ -556,6 +580,7 @@ select{
     class="logo-img"
     src="https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png"
     alt="Versus Tecnologia"
+    decoding="async"
 >
 
 <h2>
@@ -1024,7 +1049,7 @@ Estamos direcionando você para o WhatsApp...
 
 /* =====================================================
    PRODUTOS
-   MESMAS IMAGENS DO CATÁLOGO
+   LINKS ORIGINAIS DO IMGBB MANTIDOS
 ===================================================== */
 
 const produtos = [
@@ -1169,6 +1194,77 @@ const aparelho =
 
 
 /* =====================================================
+   PRÉ-CARREGAMENTO DAS IMAGENS
+   IMPORTANTE:
+   Não usamos loading="lazy".
+   As imagens são carregadas antecipadamente.
+===================================================== */
+
+const imagensPrecarregadas = {};
+
+produtos.forEach(produto => {
+
+    const img = new Image();
+
+    img.decoding = "async";
+
+    img.onload = function(){
+        imagensPrecarregadas[produto.imagem] = true;
+    };
+
+    img.onerror = function(){
+        imagensPrecarregadas[produto.imagem] = false;
+        console.warn(
+            "Imagem não carregou:",
+            produto.imagem
+        );
+    };
+
+    img.src = produto.imagem;
+
+});
+
+
+/* =====================================================
+   FUNÇÃO PARA VERIFICAR / FORÇAR IMAGEM
+===================================================== */
+
+function prepararImagem(img, url){
+
+    if(!img || !url)
+        return;
+
+    img.decoding = "async";
+
+    /*
+     * Não usamos lazy loading.
+     */
+    img.loading = "eager";
+
+    /*
+     * Se a imagem já estiver carregada,
+     * mantém normalmente.
+     */
+    if(img.complete && img.naturalWidth > 0){
+        return;
+    }
+
+    /*
+     * Força uma nova requisição caso
+     * o navegador ainda não tenha carregado.
+     */
+    img.src = "";
+
+    requestAnimationFrame(function(){
+
+        img.src = url;
+
+    });
+
+}
+
+
+/* =====================================================
    RENDERIZA PRODUTOS
 ===================================================== */
 
@@ -1178,7 +1274,7 @@ function renderProdutos(){
 
     let categoriaAtual = "";
 
-    produtos.forEach(produto => {
+    produtos.forEach((produto,index) => {
 
         if(produto.categoria !== categoriaAtual){
 
@@ -1208,9 +1304,11 @@ function renderProdutos(){
 
 
         /*
-         * IMPORTANTE:
-         * A imagem é usada diretamente da URL
-         * do catálogo.
+         * A imagem continua vindo diretamente
+         * do ImgBB.
+         *
+         * Não usamos loading="lazy", porque
+         * os cards ficam dentro de um modal.
          */
 
         card.innerHTML = `
@@ -1218,8 +1316,14 @@ function renderProdutos(){
             <img
                 src="${produto.imagem}"
                 alt="${produto.nome}"
-                loading="lazy"
+                loading="eager"
+                decoding="async"
+                draggable="false"
             >
+
+            <div class="image-error-text">
+                Imagem indisponível
+            </div>
 
             <h5>
                 ${produto.nome}
@@ -1230,6 +1334,50 @@ function renderProdutos(){
             </span>
 
         `;
+
+
+        const imagem =
+            card.querySelector("img");
+
+
+        /*
+         * Quando carregar:
+         * remove qualquer indicação de erro.
+         */
+
+        imagem.addEventListener(
+            "load",
+            function(){
+
+                card.classList.remove(
+                    "image-error"
+                );
+
+            }
+        );
+
+
+        /*
+         * Se realmente houver erro no
+         * carregamento, o card continua
+         * funcionando.
+         */
+
+        imagem.addEventListener(
+            "error",
+            function(){
+
+                console.warn(
+                    "Erro ao carregar imagem:",
+                    produto.imagem
+                );
+
+                card.classList.add(
+                    "image-error"
+                );
+
+            }
+        );
 
 
         card.onclick = function(){
@@ -1268,6 +1416,9 @@ function selecionarProduto(produto){
         <img
             src="${produto.imagem}"
             alt="${produto.nome}"
+            loading="eager"
+            decoding="async"
+            draggable="false"
         >
 
         <div class="selector-content">
@@ -1289,13 +1440,27 @@ function selecionarProduto(produto){
     `;
 
 
+    /*
+     * Garante que a imagem selecionada
+     * seja carregada imediatamente.
+     */
+
+    const imagemSelecionada =
+        selector.querySelector("img");
+
+    prepararImagem(
+        imagemSelecionada,
+        produto.imagem
+    );
+
+
     fecharModal();
 
 }
 
 
 /* =====================================================
-   ABRIR / FECHAR MODAL
+   ABRIR MODAL
 ===================================================== */
 
 function abrirModal(){
@@ -1309,8 +1474,58 @@ function abrirModal(){
 
     document.body.style.overflow =
         "hidden";
+
+
+    /*
+     * Quando o modal abrir, garantimos
+     * novamente que todas as imagens
+     * sejam carregadas.
+     */
+
+    const imagens =
+        grid.querySelectorAll("img");
+
+
+    imagens.forEach((img,index) => {
+
+        const produto =
+            produtos[index];
+
+        /*
+         * Como existem category-labels,
+         * não usamos o índice diretamente.
+         * O src atual já é suficiente.
+         */
+
+        if(img && img.dataset.carregado !== "true"){
+
+            const url =
+                img.getAttribute("src");
+
+            if(url){
+
+                img.loading = "eager";
+                img.decoding = "async";
+
+                /*
+                 * O navegador já conhece a URL.
+                 * Apenas marcamos como solicitado.
+                 */
+
+                img.dataset.carregado =
+                    "true";
+            }
+
+        }
+
+    });
+
 }
 
+
+/* =====================================================
+   FECHAR MODAL
+===================================================== */
 
 function fecharModal(){
 
