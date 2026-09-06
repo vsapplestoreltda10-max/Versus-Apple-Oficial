@@ -1,7 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Versus Tecnologia | Cadastro</title>
@@ -9,566 +13,925 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
+
     --purple:#ae52ff;
+
     --purple-dark:#8b35d6;
+
     --bg:#050505;
+
     --card:#111111;
+
     --input:#191919;
+
     --border:rgba(255,255,255,.08);
+
 }
 
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
+
     font-family:'Poppins',sans-serif;
+
 }
 
 body{
+
     min-height:100vh;
+
     background:
+
         radial-gradient(circle at top,rgba(174,82,255,.14),transparent 38%),
+
         #050505;
+
     color:#fff;
+
     padding:20px 12px;
+
 }
 
 .container{
+
     width:100%;
+
     max-width:480px;
+
     margin:auto;
+
     padding:35px 28px;
+
     background:rgba(17,17,17,.97);
+
     border:1px solid rgba(174,82,255,.18);
+
     border-radius:27px;
+
     box-shadow:0 25px 70px rgba(0,0,0,.7);
+
 }
 
 .logo-img{
+
     width:140px;
+
     display:block;
+
     margin:0 auto 15px;
+
 }
 
 h2{
+
     text-align:center;
+
     font-size:25px;
+
     font-weight:800;
+
 }
 
 h2 span{
+
     color:var(--purple);
+
 }
 
 .subtitle{
+
     text-align:center;
+
     color:#777;
+
     font-size:11px;
+
     line-height:1.6;
+
     margin:12px 5px 28px;
+
 }
 
 h3{
+
     margin:30px 0 17px;
+
     padding-left:10px;
+
     border-left:3px solid var(--purple);
+
     font-size:14px;
+
     text-transform:uppercase;
+
 }
 
 .field{
+
     margin-top:16px;
+
 }
 
 .field-title{
+
     color:#aaa;
+
     font-size:11px;
+
     margin-bottom:7px;
+
 }
 
 .input-group{
+
     display:flex;
+
     width:100%;
+
     min-height:50px;
+
 }
 
 .input-icon{
+
     width:50px;
+
     min-width:50px;
+
     min-height:50px;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
     background:#202020;
+
     border:1px solid rgba(174,82,255,.25);
+
     border-right:none;
+
     border-radius:13px 0 0 13px;
+
     color:var(--purple);
+
     font-size:18px;
+
 }
 
 .input-icon svg{
+
     width:20px;
+
     height:20px;
+
     stroke:currentColor;
+
     fill:none;
+
     stroke-width:2;
+
     stroke-linecap:round;
+
     stroke-linejoin:round;
+
 }
 
 .input-group input,
+
 .input-group select,
+
 .input-group textarea{
+
     width:100%;
+
     min-width:0;
+
     background:var(--input);
+
     color:#fff;
+
     border:1px solid var(--border);
+
     outline:none;
+
     font-size:13px;
+
 }
 
 .input-group input,
+
 .input-group select{
+
     height:50px;
+
     padding:0 14px;
+
     border-radius:0 13px 13px 0;
+
 }
 
 .input-group textarea{
+
     min-height:100px;
+
     padding:14px;
+
     resize:vertical;
+
     border-radius:0 13px 13px 0;
+
 }
 
 .input-group input:focus,
+
 .input-group select:focus,
+
 .input-group textarea:focus{
+
     border-color:var(--purple);
+
 }
 
 input[type="date"]{
+
     color-scheme:dark;
+
 }
 
 select{
+
     cursor:pointer;
+
 }
 
 .email-wrapper{
+
     position:relative;
+
 }
 
 .sugestoes-box{
+
     display:none;
+
     position:absolute;
+
     z-index:50;
+
     top:55px;
+
     right:0;
+
     width:calc(100% - 50px);
+
     background:#202020;
+
     border:1px solid rgba(174,82,255,.3);
+
     border-radius:12px;
+
     overflow:hidden;
+
 }
 
 .sugestoes-box div{
+
     padding:12px;
+
     cursor:pointer;
+
     font-size:12px;
+
 }
 
 .sugestoes-box div:hover{
+
     background:var(--purple);
+
 }
 
 .termos-area{
+
     margin-top:22px;
+
 }
 
 .checkbox-container{
+
     display:flex;
+
     align-items:center;
+
     gap:9px;
+
     color:#aaa;
+
     font-size:11px;
+
     cursor:pointer;
+
 }
 
 .checkbox-container input{
+
     width:17px;
+
     height:17px;
+
     accent-color:var(--purple);
+
 }
 
 .termos-info{
+
     margin:9px 0 0 26px;
+
     padding:11px 13px;
+
     border-left:2px solid var(--purple);
+
     background:rgba(174,82,255,.06);
+
     color:#777;
+
     font-size:9.5px;
+
     line-height:1.6;
+
     border-radius:0 9px 9px 0;
+
 }
 
 #btnEnviar{
+
     width:100%;
+
     margin-top:28px;
+
     padding:16px;
+
     border:none;
+
     border-radius:14px;
+
     background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+
     color:#fff;
+
     font-size:14px;
+
     font-weight:800;
+
     cursor:pointer;
+
     box-shadow:0 8px 30px rgba(174,82,255,.22);
+
     transition:.25s;
+
 }
 
 #btnEnviar:hover{
+
     transform:translateY(-2px);
+
 }
 
 #btnEnviar:disabled{
+
     opacity:.7;
+
     cursor:wait;
+
 }
 
 .footer{
+
     text-align:center;
+
     color:#555;
+
     font-size:10px;
+
     margin-top:20px;
+
 }
 
-
 /* =====================================================
+
    SELETOR DO APARELHO
+
 ===================================================== */
 
 .device-selector{
+
     width:100%;
+
     height:50px;
+
     padding:5px 10px;
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
     background:var(--input);
+
     border:1px solid var(--border);
+
     border-radius:0 13px 13px 0;
+
     color:#fff;
+
     cursor:pointer;
+
     text-align:left;
+
 }
 
 .device-selector:hover{
+
     border-color:var(--purple);
+
     background:#202020;
+
 }
 
 .device-selector img{
+
     width:39px;
+
     height:39px;
+
     object-fit:contain;
+
     border-radius:7px;
+
     background:#080808;
+
 }
 
 .selector-content{
+
     flex:1;
+
     min-width:0;
+
 }
 
 .selector-name{
+
     font-size:11px;
+
     font-weight:700;
+
     white-space:nowrap;
+
     overflow:hidden;
+
     text-overflow:ellipsis;
+
 }
 
 .selector-storage{
+
     color:#777;
+
     font-size:8px;
+
 }
 
 .selector-arrow{
+
     color:var(--purple);
+
     font-size:19px;
+
 }
 
-
 /* =====================================================
+
    MODAL
+
 ===================================================== */
 
 .device-modal{
+
     position:fixed;
+
     inset:0;
+
     z-index:9999;
+
     display:none;
+
     align-items:center;
+
     justify-content:center;
+
     padding:15px;
+
     background:rgba(0,0,0,.88);
+
     backdrop-filter:blur(15px);
+
 }
 
 .device-modal.active{
+
     display:flex;
+
 }
 
 .device-panel{
+
     width:100%;
+
     max-width:850px;
+
     max-height:90vh;
+
     overflow:hidden;
+
     background:
+
         radial-gradient(circle at top,rgba(174,82,255,.11),transparent 40%),
+
         #101010;
+
     border:1px solid rgba(174,82,255,.3);
+
     border-radius:27px;
+
     box-shadow:
+
         0 30px 100px rgba(0,0,0,.9),
+
         0 0 50px rgba(174,82,255,.12);
+
 }
 
 .device-header{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     padding:21px;
+
     border-bottom:1px solid rgba(255,255,255,.07);
+
 }
 
 .device-header h4{
+
     font-size:18px;
+
 }
 
 .device-header p{
+
     margin-top:3px;
+
     color:#777;
+
     font-size:10px;
+
 }
 
 .close-device{
+
     width:38px;
+
     height:38px;
+
     padding:0;
+
     margin:0;
+
     border:none;
+
     border-radius:50%;
+
     background:#202020;
+
     color:#fff;
+
     font-size:24px;
+
     cursor:pointer;
+
 }
 
 .close-device:hover{
+
     background:#292929;
+
 }
 
 .device-grid{
+
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
+
     gap:13px;
+
     padding:18px;
+
     overflow-y:auto;
+
     max-height:calc(90vh - 90px);
+
 }
 
 .category-label{
+
     grid-column:1/-1;
+
     padding:3px 2px;
+
     color:var(--purple);
+
     font-size:11px;
+
     font-weight:700;
+
     text-transform:uppercase;
+
 }
 
 .device-card{
+
     min-height:190px;
+
     padding:12px 8px;
+
     border:1px solid rgba(255,255,255,.07);
+
     border-radius:18px;
+
     background:linear-gradient(145deg,#171717,#0c0c0c);
+
     color:#fff;
+
     cursor:pointer;
+
     text-align:center;
+
     transition:.25s;
+
 }
 
 .device-card:hover{
+
     transform:translateY(-4px);
+
     border-color:var(--purple);
+
     box-shadow:0 12px 30px rgba(174,82,255,.18);
+
 }
 
 .device-card img{
+
     width:110px;
+
     height:115px;
+
     object-fit:contain;
+
     display:block;
+
     margin:0 auto 7px;
+
 }
 
 .device-card.game img{
+
     width:135px;
+
 }
 
 .device-card h5{
+
     font-size:11px;
+
     font-weight:700;
+
 }
 
 .device-card span{
+
     display:block;
+
     margin-top:4px;
+
     color:#777;
+
     font-size:9px;
-}
 
+}
 
 /* =====================================================
-   ERRO DE IMAGEM
-===================================================== */
 
-.device-card.image-error{
-    border-color:rgba(255,80,80,.25);
-}
-
-.device-card.image-error img{
-    opacity:.25;
-}
-
-.image-error-text{
-    display:none;
-    color:#777;
-    font-size:8px;
-    margin-bottom:5px;
-}
-
-.device-card.image-error .image-error-text{
-    display:block;
-}
-
-
-/* =====================================================
    ENVIO
+
 ===================================================== */
 
 .overlay-envio{
+
     position:fixed;
+
     inset:0;
+
     z-index:10000;
+
     display:none;
+
     align-items:center;
+
     justify-content:center;
+
     background:rgba(0,0,0,.88);
+
     backdrop-filter:blur(10px);
+
 }
 
 .overlay-envio.ativo{
+
     display:flex;
+
 }
 
 .caixa-envio{
+
     width:90%;
+
     max-width:390px;
+
     padding:40px 28px;
+
     text-align:center;
+
     background:#111;
+
     border:1px solid rgba(174,82,255,.35);
+
     border-radius:26px;
+
     box-shadow:0 25px 80px rgba(0,0,0,.8);
+
 }
 
 .icone-envio{
+
     width:75px;
+
     height:75px;
+
     margin:0 auto 20px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     border-radius:50%;
+
     background:rgba(174,82,255,.12);
+
     border:2px solid rgba(174,82,255,.4);
+
     color:var(--purple);
+
     font-size:32px;
+
 }
 
 .caixa-envio h4{
+
     font-size:20px;
+
     margin-bottom:9px;
+
 }
 
 .caixa-envio p{
+
     color:#888;
+
     font-size:11px;
+
     line-height:1.6;
+
 }
 
 .barra{
+
     width:100%;
+
     height:4px;
+
     margin-top:25px;
+
     overflow:hidden;
+
     background:#222;
+
     border-radius:10px;
+
 }
 
 .barra:after{
+
     content:"";
+
     display:block;
+
     width:35%;
+
     height:100%;
+
     background:var(--purple);
+
     animation:carregar 1.5s infinite;
+
 }
 
 @keyframes carregar{
+
     from{transform:translateX(-120%);}
+
     to{transform:translateX(390%);}
+
 }
 
 @media(max-width:700px){
 
     .device-grid{
+
         grid-template-columns:repeat(3,1fr);
+
     }
+
 }
 
 @media(max-width:480px){
 
     .container{
+
         padding:28px 18px;
+
     }
 
     .device-grid{
+
         grid-template-columns:repeat(2,1fr);
+
         gap:9px;
+
         padding:12px;
+
     }
 
     .device-card{
+
         min-height:175px;
+
     }
 
     .device-card img{
+
         width:90px;
+
         height:100px;
+
     }
 
     .device-card.game img{
+
         width:110px;
+
     }
+
 }
+
 </style>
+
 </head>
 
 <body>
@@ -576,24 +939,33 @@ select{
 <div class="container">
 
 <img
+
     id="logoVersus"
+
     class="logo-img"
+
     src="https://i.postimg.cc/65fDCpXM/Chat-GPT-Image-7-de-mai-de-2026-15-27-41.png"
+
     alt="Versus Tecnologia"
-    decoding="async"
+
 >
 
 <h2>
+
     Versus <span>Tecnologia</span>
+
 </h2>
 
 <p class="subtitle">
+
     Preencha seus dados para iniciar sua análise e prosseguir com sua compra.
+
 </p>
 
-
 <!-- =====================================================
+
      DADOS PESSOAIS
+
 ===================================================== -->
 
 <h3>Dados Pessoais</h3>
@@ -605,20 +977,28 @@ select{
 <div class="input-group">
 
 <div class="input-icon">
+
 <svg viewBox="0 0 24 24">
+
 <circle cx="12" cy="8" r="4"/>
+
 <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/>
+
 </svg>
+
 </div>
 
 <input
+
     id="nome"
+
     placeholder="Digite seu nome completo"
+
 >
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
@@ -627,21 +1007,30 @@ select{
 <div class="input-group">
 
 <div class="input-icon">
+
 <svg viewBox="0 0 24 24">
+
 <rect x="3" y="5" width="18" height="14" rx="2"/>
+
 <circle cx="8" cy="12" r="2"/>
+
 <path d="M13 10h5M13 14h5"/>
+
 </svg>
+
 </div>
 
 <input
+
     id="cpf"
+
     placeholder="000.000.000-00"
+
 >
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
@@ -650,17 +1039,22 @@ select{
 <div class="input-group">
 
 <div class="input-icon">
+
 📅
+
 </div>
 
 <input
+
     type="date"
+
     id="nascimento"
+
 >
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
@@ -671,25 +1065,34 @@ select{
 <div class="input-group">
 
 <div class="input-icon">
+
 ✉
+
 </div>
 
 <input
+
     id="email"
+
     autocomplete="off"
+
     placeholder="seuemail@exemplo.com"
+
 >
 
 </div>
 
 <div
+
     id="sugestoesEmail"
+
     class="sugestoes-box"
+
 ></div>
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
@@ -698,57 +1101,77 @@ select{
 <div class="input-group">
 
 <div class="input-icon">
+
 ☎
+
 </div>
 
 <input
+
     id="telefone"
+
     placeholder="(00) 00000-0000"
+
 >
 
 </div>
+
 </div>
 
-
 <!-- =====================================================
+
      COMPRA
+
 ===================================================== -->
 
 <h3>Compra</h3>
 
-
 <div class="field">
 
 <div class="field-title">
+
 Aparelhos com disponibilidade
+
 </div>
 
 <div class="input-group">
 
 <div class="input-icon">
+
 📱
+
 </div>
 
 <button
+
     type="button"
+
     id="deviceSelector"
+
     class="device-selector"
+
 >
 
 <div class="selector-content">
 
 <div class="selector-name">
+
 Selecione um aparelho
+
 </div>
 
 <div class="selector-storage">
+
 iPhones e videogames
+
 </div>
 
 </div>
 
 <div class="selector-arrow">
+
 ›
+
 </div>
 
 </button>
@@ -756,51 +1179,66 @@ iPhones e videogames
 </div>
 
 <input
+
     type="hidden"
+
     id="aparelho"
+
     value=""
+
 >
 
 </div>
 
-
 <div class="field">
 
 <div class="field-title">
+
 Dia de vencimento das parcelas
+
 </div>
 
 <div class="input-group">
 
 <div class="input-icon">
+
 📅
+
 </div>
 
 <select id="vencimento">
 
 <option value="">
+
 Selecione o dia
+
 </option>
 
 <option>Dia 5</option>
+
 <option>Dia 10</option>
+
 <option>Dia 15</option>
+
 <option>Dia 20</option>
+
 <option>Dia 25</option>
+
 <option>Dia 30</option>
 
 </select>
 
 </div>
+
 </div>
 
-
 <!-- =====================================================
+
      ENDEREÇO
+
 ===================================================== -->
 
 <h3>Endereço</h3>
-
 
 <div class="field">
 
@@ -811,14 +1249,18 @@ Selecione o dia
 <div class="input-icon">📍</div>
 
 <input
+
     id="cep"
+
     onblur="buscarCEP()"
+
     placeholder="00000-000"
+
 >
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
@@ -829,13 +1271,16 @@ Selecione o dia
 <div class="input-icon">🏠</div>
 
 <input
+
     id="rua"
+
     placeholder="Rua / Avenida"
+
 >
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
@@ -846,13 +1291,16 @@ Selecione o dia
 <div class="input-icon">#</div>
 
 <input
+
     id="numero"
+
     placeholder="Número"
+
 >
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
@@ -863,13 +1311,16 @@ Selecione o dia
 <div class="input-icon">⌂</div>
 
 <input
+
     id="bairro"
+
     placeholder="Bairro"
+
 >
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
@@ -880,13 +1331,16 @@ Selecione o dia
 <div class="input-icon">🏙</div>
 
 <input
+
     id="cidade"
+
     placeholder="Cidade"
+
 >
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
@@ -897,18 +1351,23 @@ Selecione o dia
 <div class="input-icon">🇧🇷</div>
 
 <input
+
     id="estado"
+
     placeholder="UF"
+
 >
 
 </div>
-</div>
 
+</div>
 
 <div class="field">
 
 <div class="field-title">
+
 Observações para entrega
+
 </div>
 
 <div class="input-group">
@@ -916,16 +1375,21 @@ Observações para entrega
 <div class="input-icon">📝</div>
 
 <textarea
+
     id="observacao"
+
     placeholder="Apartamento, bloco, referência..."
+
 ></textarea>
 
 </div>
+
 </div>
 
-
 <!-- =====================================================
+
      TERMOS
+
 ===================================================== -->
 
 <div class="termos-area">
@@ -933,12 +1397,17 @@ Observações para entrega
 <label class="checkbox-container">
 
 <input
+
     type="checkbox"
+
     id="termos"
+
 >
 
 <span>
+
 Li e aceito os termos de compra
+
 </span>
 
 </label>
@@ -951,30 +1420,40 @@ Ao marcar esta opção, declaro estar ciente e de acordo com o encaminhamento do
 
 </div>
 
-
 <button
+
     id="btnEnviar"
+
     onclick="enviar()"
+
 >
+
 FINALIZAR CADASTRO
+
 </button>
 
-
 <div class="footer">
+
 🔒 Seus dados são protegidos durante o envio.
-</div>
 
 </div>
 
+</div>
 
 <!-- =====================================================
+
      MODAL DOS APARELHOS
+
 ===================================================== -->
 
 <div
+
     id="deviceModal"
+
     class="device-modal"
+
     aria-hidden="true"
+
 >
 
 <div class="device-panel">
@@ -984,58 +1463,81 @@ FINALIZAR CADASTRO
 <div>
 
 <h4>
+
 Escolha seu aparelho
+
 </h4>
 
 <p>
+
 Selecione o modelo desejado
+
 </p>
 
 </div>
 
 <button
+
     type="button"
+
     id="closeDevice"
+
     class="close-device"
+
 >
+
 ×
+
 </button>
 
 </div>
 
-
 <div
+
     id="deviceGrid"
+
     class="device-grid"
+
 ></div>
 
 </div>
 
 </div>
 
-
 <!-- =====================================================
+
      ENVIO
+
 ===================================================== -->
 
 <div
+
     id="overlayEnvio"
+
     class="overlay-envio"
+
 >
 
 <div class="caixa-envio">
 
 <div class="icone-envio">
+
 ✓
+
 </div>
 
 <h4>
+
 Cadastro enviado!
+
 </h4>
 
 <p>
+
 Sua ficha foi preparada com sucesso.<br>
+
 Estamos direcionando você para o WhatsApp...
+
 </p>
 
 <div class="barra"></div>
@@ -1044,12 +1546,14 @@ Estamos direcionando você para o WhatsApp...
 
 </div>
 
-
 <script>
 
 /* =====================================================
+
    PRODUTOS
-   LINKS ORIGINAIS DO IMGBB MANTIDOS
+
+   MESMAS IMAGENS DO CATÁLOGO
+
 ===================================================== */
 
 const produtos = [
@@ -1057,215 +1561,231 @@ const produtos = [
     /* ================= IPHONES ================= */
 
     {
+
         categoria:"iPhones",
+
         nome:"14 Normal",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/k65j17V6/i-Phone-14-Azul.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"14 Pro",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/sS9N6Tt/i-Phone-14-Pro-Max-Deep-Purple.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"14 Pro Max",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/sS9N6Tt/i-Phone-14-Pro-Max-Deep-Purple.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"15 Normal",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/PGTf8vpk/i-Phone-15-Rosa.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"15 Plus",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/PGTf8vpk/i-Phone-15-Rosa.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"15 Pro",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/Q3rtkTPN/i-Phone-15-Pro-Max-Titanio-Natural.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"15 Pro Max",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/Q3rtkTPN/i-Phone-15-Pro-Max-Titanio-Natural.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"16 Normal",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/nNzNR4cP/i-Phone-16-Azul.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"16 Pro",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/215Zwy74/i-Phone-16-Pro-Titanio-Branco.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"16 Pro Max",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/215Zwy74/i-Phone-16-Pro-Titanio-Branco.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"17 Normal",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/gLpVDN1F/i-Phone-17-Lavanda.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"17 Air",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/F4XD2fdp/i-Phone-17-Air-Branco.png"
+
     },
 
     {
+
         categoria:"iPhones",
+
         nome:"17 Pro",
+
         storage:"256GB",
+
         imagem:"https://i.ibb.co/JRmSkVV0/i-Phone-17-Pro-Silver.png"
+
     },
 
     {
-        categoria:"iPhones",
-        nome:"17 Pro Max",
-        storage:"256GB",
-        imagem:"https://i.ibb.co/JRmSkVV0/i-Phone-17-Pro-Silver.png"
-    },
 
+        categoria:"iPhones",
+
+        nome:"17 Pro Max",
+
+        storage:"256GB",
+
+        imagem:"https://i.ibb.co/JRmSkVV0/i-Phone-17-Pro-Silver.png"
+
+    },
 
     /* ================= VIDEOGAMES ================= */
 
     {
+
         categoria:"Videogames",
+
         nome:"PlayStation 5 Slim",
+
         storage:"1TB",
+
         imagem:"https://i.ibb.co/jks6Bb64/pngtree-top-quality-playstation-5-console-isolated-png-image-15514648.png",
+
         game:true
+
     },
 
     {
+
         categoria:"Videogames",
+
         nome:"Xbox Series X",
+
         storage:"",
+
         imagem:"https://i.ibb.co/zVBgBddj/XBOX.png",
+
         game:true
+
     }
 
 ];
 
-
 /* =====================================================
+
    ELEMENTOS
+
 ===================================================== */
 
 const modal =
+
     document.getElementById("deviceModal");
 
 const grid =
+
     document.getElementById("deviceGrid");
 
 const selector =
+
     document.getElementById("deviceSelector");
 
 const aparelho =
+
     document.getElementById("aparelho");
 
-
 /* =====================================================
-   PRÉ-CARREGAMENTO DAS IMAGENS
-   IMPORTANTE:
-   Não usamos loading="lazy".
-   As imagens são carregadas antecipadamente.
-===================================================== */
 
-const imagensPrecarregadas = {};
-
-produtos.forEach(produto => {
-
-    const img = new Image();
-
-    img.decoding = "async";
-
-    img.onload = function(){
-        imagensPrecarregadas[produto.imagem] = true;
-    };
-
-    img.onerror = function(){
-        imagensPrecarregadas[produto.imagem] = false;
-        console.warn(
-            "Imagem não carregou:",
-            produto.imagem
-        );
-    };
-
-    img.src = produto.imagem;
-
-});
-
-
-/* =====================================================
-   FUNÇÃO PARA VERIFICAR / FORÇAR IMAGEM
-===================================================== */
-
-function prepararImagem(img, url){
-
-    if(!img || !url)
-        return;
-
-    img.decoding = "async";
-
-    /*
-     * Não usamos lazy loading.
-     */
-    img.loading = "eager";
-
-    /*
-     * Se a imagem já estiver carregada,
-     * mantém normalmente.
-     */
-    if(img.complete && img.naturalWidth > 0){
-        return;
-    }
-
-    /*
-     * Força uma nova requisição caso
-     * o navegador ainda não tenha carregado.
-     */
-    img.src = "";
-
-    requestAnimationFrame(function(){
-
-        img.src = url;
-
-    });
-
-}
-
-
-/* =====================================================
    RENDERIZA PRODUTOS
+
 ===================================================== */
 
 function renderProdutos(){
@@ -1274,111 +1794,75 @@ function renderProdutos(){
 
     let categoriaAtual = "";
 
-    produtos.forEach((produto,index) => {
+    produtos.forEach(produto => {
 
         if(produto.categoria !== categoriaAtual){
 
             categoriaAtual = produto.categoria;
 
             const categoria =
+
                 document.createElement("div");
 
             categoria.className =
+
                 "category-label";
 
             categoria.innerText =
+
                 categoriaAtual;
 
             grid.appendChild(categoria);
+
         }
 
-
         const card =
+
             document.createElement("button");
 
         card.type = "button";
 
         card.className =
+
             "device-card" +
+
             (produto.game ? " game" : "");
 
-
         /*
-         * A imagem continua vindo diretamente
-         * do ImgBB.
-         *
-         * Não usamos loading="lazy", porque
-         * os cards ficam dentro de um modal.
+
+         * IMPORTANTE:
+
+         * A imagem é usada diretamente da URL
+
+         * do catálogo.
+
          */
 
         card.innerHTML = `
 
             <img
+
                 src="${produto.imagem}"
+
                 alt="${produto.nome}"
-                loading="eager"
-                decoding="async"
-                draggable="false"
+
+                loading="lazy"
+
             >
 
-            <div class="image-error-text">
-                Imagem indisponível
-            </div>
-
             <h5>
+
                 ${produto.nome}
+
             </h5>
 
             <span>
+
                 ${produto.storage || "Console"}
+
             </span>
 
         `;
-
-
-        const imagem =
-            card.querySelector("img");
-
-
-        /*
-         * Quando carregar:
-         * remove qualquer indicação de erro.
-         */
-
-        imagem.addEventListener(
-            "load",
-            function(){
-
-                card.classList.remove(
-                    "image-error"
-                );
-
-            }
-        );
-
-
-        /*
-         * Se realmente houver erro no
-         * carregamento, o card continua
-         * funcionando.
-         */
-
-        imagem.addEventListener(
-            "error",
-            function(){
-
-                console.warn(
-                    "Erro ao carregar imagem:",
-                    produto.imagem
-                );
-
-                card.classList.add(
-                    "image-error"
-                );
-
-            }
-        );
-
 
         card.onclick = function(){
 
@@ -1386,81 +1870,76 @@ function renderProdutos(){
 
         };
 
-
         grid.appendChild(card);
 
     });
 
 }
 
-
 /* =====================================================
+
    SELECIONAR PRODUTO
+
 ===================================================== */
 
 function selecionarProduto(produto){
 
     const valor =
+
         produto.storage
+
         ?
+
         produto.nome + " " + produto.storage
+
         :
+
         produto.nome;
 
-
     aparelho.value = valor;
-
 
     selector.innerHTML = `
 
         <img
+
             src="${produto.imagem}"
+
             alt="${produto.nome}"
-            loading="eager"
-            decoding="async"
-            draggable="false"
+
         >
 
         <div class="selector-content">
 
             <div class="selector-name">
+
                 ${produto.nome}
+
             </div>
 
             <div class="selector-storage">
+
                 ${produto.storage || "Console"} • selecionado
+
             </div>
 
         </div>
 
         <div class="selector-arrow">
+
             ✓
+
         </div>
 
     `;
-
-
-    /*
-     * Garante que a imagem selecionada
-     * seja carregada imediatamente.
-     */
-
-    const imagemSelecionada =
-        selector.querySelector("img");
-
-    prepararImagem(
-        imagemSelecionada,
-        produto.imagem
-    );
-
 
     fecharModal();
 
 }
 
-
 /* =====================================================
-   ABRIR MODAL
+
+   ABRIR / FECHAR MODAL
+
 ===================================================== */
 
 function abrirModal(){
@@ -1468,95 +1947,61 @@ function abrirModal(){
     modal.classList.add("active");
 
     modal.setAttribute(
+
         "aria-hidden",
+
         "false"
+
     );
 
     document.body.style.overflow =
+
         "hidden";
 
-
-    /*
-     * Quando o modal abrir, garantimos
-     * novamente que todas as imagens
-     * sejam carregadas.
-     */
-
-    const imagens =
-        grid.querySelectorAll("img");
-
-
-    imagens.forEach((img,index) => {
-
-        const produto =
-            produtos[index];
-
-        /*
-         * Como existem category-labels,
-         * não usamos o índice diretamente.
-         * O src atual já é suficiente.
-         */
-
-        if(img && img.dataset.carregado !== "true"){
-
-            const url =
-                img.getAttribute("src");
-
-            if(url){
-
-                img.loading = "eager";
-                img.decoding = "async";
-
-                /*
-                 * O navegador já conhece a URL.
-                 * Apenas marcamos como solicitado.
-                 */
-
-                img.dataset.carregado =
-                    "true";
-            }
-
-        }
-
-    });
-
 }
-
-
-/* =====================================================
-   FECHAR MODAL
-===================================================== */
 
 function fecharModal(){
 
     modal.classList.remove("active");
 
     modal.setAttribute(
+
         "aria-hidden",
+
         "true"
+
     );
 
     document.body.style.overflow =
+
         "";
+
 }
 
-
 selector.addEventListener(
+
     "click",
+
     abrirModal
+
 );
 
-
 document
+
     .getElementById("closeDevice")
+
     .addEventListener(
+
         "click",
+
         fecharModal
+
     );
 
-
 modal.addEventListener(
+
     "click",
+
     function(e){
 
         if(e.target === modal){
@@ -1566,16 +2011,21 @@ modal.addEventListener(
         }
 
     }
+
 );
 
-
 document.addEventListener(
+
     "keydown",
+
     function(e){
 
         if(
+
             e.key === "Escape" &&
+
             modal.classList.contains("active")
+
         ){
 
             fecharModal();
@@ -1583,63 +2033,87 @@ document.addEventListener(
         }
 
     }
+
 );
 
-
 /* =====================================================
+
    INICIA GALERIA
+
 ===================================================== */
 
 renderProdutos();
 
-
 /* =====================================================
+
    CPF
+
 ===================================================== */
 
 document
+
     .getElementById("cpf")
+
     .addEventListener(
+
         "input",
+
         function(e){
 
             let v =
+
                 e.target.value.replace(/\D/g,"");
 
             v = v.substring(0,11);
 
             v = v.replace(
+
                 /(\d{3})(\d)/,
+
                 "$1.$2"
+
             );
 
             v = v.replace(
+
                 /(\d{3})(\d)/,
+
                 "$1.$2"
+
             );
 
             v = v.replace(
+
                 /(\d{3})(\d{1,2})$/,
+
                 "$1-$2"
+
             );
 
             e.target.value = v;
 
         }
+
     );
 
-
 /* =====================================================
+
    TELEFONE
+
 ===================================================== */
 
 document
+
     .getElementById("telefone")
+
     .addEventListener(
+
         "input",
+
         function(e){
 
             let v =
+
                 e.target.value.replace(/\D/g,"");
 
             v = v.substring(0,11);
@@ -1647,22 +2121,31 @@ document
             if(v.length >= 11){
 
                 v = v.replace(
+
                     /^(\d{2})(\d{5})(\d{4})$/,
+
                     "($1) $2-$3"
+
                 );
 
             }else if(v.length >= 7){
 
                 v = v.replace(
+
                     /^(\d{2})(\d{4})(\d+)/,
+
                     "($1) $2-$3"
+
                 );
 
             }else if(v.length >= 3){
 
                 v = v.replace(
+
                     /^(\d{2})(\d+)/,
+
                     "($1) $2"
+
                 );
 
             }
@@ -1670,101 +2153,125 @@ document
             e.target.value = v;
 
         }
+
     );
 
-
 /* =====================================================
+
    EMAIL
+
 ===================================================== */
 
 const email =
+
     document.getElementById("email");
 
 const sugestoes =
+
     document.getElementById("sugestoesEmail");
 
 const dominios = [
+
     "@gmail.com",
+
     "@hotmail.com",
+
     "@outlook.com"
+
 ];
 
-
 email.addEventListener(
+
     "input",
+
     function(){
 
         const valor =
+
             email.value;
 
         if(
+
             valor.includes("@") ||
+
             valor.length < 2
+
         ){
 
             sugestoes.style.display =
+
                 "none";
 
             return;
+
         }
 
-
         sugestoes.innerHTML = "";
-
 
         dominios.forEach(dominio => {
 
             const item =
+
                 document.createElement("div");
 
             item.innerText =
-                valor + dominio;
 
+                valor + dominio;
 
             item.onclick = function(){
 
                 email.value =
+
                     valor + dominio;
 
                 sugestoes.style.display =
+
                     "none";
 
             };
-
 
             sugestoes.appendChild(item);
 
         });
 
-
         sugestoes.style.display =
+
             "block";
 
     }
+
 );
 
-
 /* =====================================================
+
    CEP
+
 ===================================================== */
 
 function buscarCEP(){
 
     let cep =
+
         document
+
         .getElementById("cep")
+
         .value
+
         .replace(/\D/g,"");
 
-
     if(cep.length !== 8)
+
         return;
 
-
     fetch(
+
         "https://viacep.com.br/ws/" +
+
         cep +
+
         "/json/"
+
     )
 
     .then(response => response.json())
@@ -1774,23 +2281,29 @@ function buscarCEP(){
         if(data.erro){
 
             alert(
+
                 "CEP não encontrado."
+
             );
 
             return;
+
         }
 
-
         document.getElementById("rua").value =
+
             data.logradouro || "";
 
         document.getElementById("bairro").value =
+
             data.bairro || "";
 
         document.getElementById("cidade").value =
+
             data.localidade || "";
 
         document.getElementById("estado").value =
+
             data.uf || "";
 
     })
@@ -1798,129 +2311,177 @@ function buscarCEP(){
     .catch(() => {
 
         alert(
+
             "Não foi possível consultar o CEP."
+
         );
 
     });
 
 }
 
-
 /* =====================================================
+
    ENVIAR PARA WHATSAPP
+
 ===================================================== */
 
 function enviar(){
 
     const nome =
+
         document.getElementById("nome")
+
         .value.trim();
 
     const cpf =
+
         document.getElementById("cpf")
+
         .value.trim();
 
     const nasc =
+
         document.getElementById("nascimento")
+
         .value;
 
     const email =
+
         document.getElementById("email")
+
         .value.trim();
 
     const tel =
+
         document.getElementById("telefone")
+
         .value.trim();
 
     const aparelhoSelecionado =
+
         document.getElementById("aparelho")
+
         .value;
 
     const venc =
+
         document.getElementById("vencimento")
+
         .value;
 
     const rua =
+
         document.getElementById("rua")
+
         .value.trim();
 
     const num =
+
         document.getElementById("numero")
+
         .value.trim();
 
     const bairro =
+
         document.getElementById("bairro")
+
         .value.trim();
 
     const cidade =
+
         document.getElementById("cidade")
+
         .value.trim();
 
     const estado =
+
         document.getElementById("estado")
+
         .value.trim();
 
     const observacao =
+
         document.getElementById("observacao")
+
         .value.trim();
 
     const termos =
+
         document.getElementById("termos")
+
         .checked;
 
-
     if(
+
         !nome ||
+
         !cpf ||
+
         !tel ||
+
         !aparelhoSelecionado ||
+
         !termos
+
     ){
 
         alert(
+
             "Preencha os campos obrigatórios e aceite os termos."
+
         );
 
         return;
+
     }
 
-
     const btn =
+
         document.getElementById("btnEnviar");
 
     const overlay =
-        document.getElementById("overlayEnvio");
 
+        document.getElementById("overlayEnvio");
 
     btn.disabled = true;
 
     btn.innerText =
-        "PROCESSANDO...";
 
+        "PROCESSANDO...";
 
     const mensagem =
 
 `*NOVO PEDIDO - VERSUS TECNOLOGIA*
+
 -------------------------
 
 *DADOS DO CLIENTE*
 
 Nome: ${nome}
+
 CPF: ${cpf}
+
 Nascimento: ${nasc}
+
 E-mail: ${email}
+
 Telefone: ${tel}
 
 *PEDIDO*
 
 Aparelho: ${aparelhoSelecionado}
+
 Vencimento: ${venc}
 
 *ENDEREÇO DE ENTREGA*
 
 Rua: ${rua}, ${num}
+
 Bairro: ${bairro}
+
 Cidade: ${cidade} - ${estado}
+
 Obs: ${observacao}
 
 *CONSENTIMENTO*
@@ -1929,14 +2490,14 @@ Cliente declarou estar ciente e de acordo com o encaminhamento dos dados forneci
 
 -------------------------`;
 
-
     overlay.classList.add("ativo");
-
 
     setTimeout(function(){
 
         window.location.href =
+
             "https://wa.me/5511948559200?text=" +
+
             encodeURIComponent(mensagem);
 
     },1800);
@@ -1946,4 +2507,5 @@ Cliente declarou estar ciente e de acordo com o encaminhamento dos dados forneci
 </script>
 
 </body>
+
 </html>
